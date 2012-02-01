@@ -1,0 +1,19 @@
+<RCC>
+  <qresource prefix="images">
+    <file>up.png</file>
+    <file>down.png</file>
+    <file>identation.png</file>
+    <file>xfce-mount.png</file>
+    <file>ui-file.png</file>
+    <file>gtk-jump-to-rtl.png</file>
+    <file>stock_save.png</file>
+    <file>save.png</file>
+    <file>rew.png</file>
+    <file>qt.jpeg</file>
+    <file>python-file.png</file>
+    <file>list-remove.png</file>
+    <file>list-add.png</file>
+    <file>clipt.png</file>
+    <file>folder-documents.png</file>
+  </qresource>
+</RCC>
