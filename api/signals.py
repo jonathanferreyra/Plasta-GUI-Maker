@@ -372,100 +372,100 @@ QColumnView = {
 QScrollArea = {
 'inherits':'QAbstractScrollArea',
 'signals':{
-	}
+    }
 }
 
 QFrame = {
 'inherits':'QWidget',
 'signals':{
-	}
+    }
 }
 
 QToolBox= {
 'inherits':'QFrame',
 'signals':{"currentChanged (int)":"index"
-	}
+    }
 }
 
 QTabWidget = {
 'inherits':'QWidget',
 'signals':{
-			"currentChanged (int)":'index',
-			"tabCloseRequested (int)":'index'
-	}
+            "currentChanged (int)":'index',
+            "tabCloseRequested (int)":'index'
+    }
 }
 
 QMdiArea = {
 'inherits':'QAbstractScrollArea',
 'signals':{
-		"subWindowActivated (QMdiSubWindow *)":""
-	}
+        "subWindowActivated (QMdiSubWindow *)":""
+    }
 }
 
 QDockWidget = {
 'inherits':'QWidget',
 'signals':{
-		'allowedAreasChanged (Qt::DockWidgetAreas)':'',
-		'dockLocationChanged (Qt::DockWidgetArea)':'',
-		'featuresChanged (QDockWidget::DockWidgetFeatures)':'',
-		'topLevelChanged (bool)':'value',
-		'visibilityChanged (bool)':'value'
-	}
+        'allowedAreasChanged (Qt::DockWidgetAreas)':'',
+        'dockLocationChanged (Qt::DockWidgetArea)':'',
+        'featuresChanged (QDockWidget::DockWidgetFeatures)':'',
+        'topLevelChanged (bool)':'value',
+        'visibilityChanged (bool)':'value'
+    }
 }
 
 QFontComboBox = {
 'inherits':'QComboBox.',
 'signals':{
-		'currentFontChanged (const QFont&)':'font'
-	}
+        'currentFontChanged (const QFont&)':'font'
+    }
 }
 
 QTextBrowser = {
 'inherits':'QTextEdit',
 'signals':{
-	'anchorClicked (const QUrl&)':'value',
-	'backwardAvailable (bool)':'value',
-	'forwardAvailable (bool)':'value',
-	'highlighted (const QUrl&)':'QUrl|value',
-	'highlighted (const QString&)':'QCore.QString|value',
-	'historyChanged ()':'',
-	'sourceChanged (const QUrl&)':'value'
-	}
+    'anchorClicked (const QUrl&)':'value',
+    'backwardAvailable (bool)':'value',
+    'forwardAvailable (bool)':'value',
+    'highlighted (const QUrl&)':'QUrl|value',
+    'highlighted (const QString&)':'QCore.QString|value',
+    'historyChanged ()':'',
+    'sourceChanged (const QUrl&)':'value'
+    }
 }
 
 QGraphicsView = {
 'inherits':'QAbstractScrollArea.',
 'signals':{
-	}
+    }
 }
 
 QWebView = {
 'inherits':'QWidget',
 'signals':{
-	'iconChanged ()':'',
-	'linkClicked (const QUrl&)':'index',
-	'loadFinished (bool)':'value',
-	'loadProgress (int)':'value',
-	'loadStarted ()':'',
-	'selectionChanged ()':'',
-	'statusBarMessage (const QString&)':'value',
-	'titleChanged (const QString&)':'text',
-	'urlChanged (const QUrl&)':'txturl'
-	}
+    'iconChanged ()':'',
+    'linkClicked (const QUrl&)':'index',
+    'loadFinished (bool)':'value',
+    'loadProgress (int)':'value',
+    'loadStarted ()':'',
+    'selectionChanged ()':'',
+    'statusBarMessage (const QString&)':'value',
+    'titleChanged (const QString&)':'text',
+    'urlChanged (const QUrl&)':'txturl'
+    }
 }
 
 
 QLine = {
 'inherits':None,
 'signals':{
-	}
+    }
 }
 
 
 #~ = {
 #~ 'inherits':'',
 #~ 'signals':{
-	#~ }
+    #~ }
 #~ }
 
 
