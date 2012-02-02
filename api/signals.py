@@ -368,53 +368,159 @@ QColumnView = {
     'updatePreviewWidget (const QModelIndex&)':'index'
     }
 }
-    
- #~ = {
+
+QScrollArea = {
+'inherits':'QAbstractScrollArea',
+'signals':{
+	}
+}
+
+QFrame = {
+'inherits':'QWidget',
+'signals':{
+	}
+}
+
+QToolBox= {
+'inherits':'QFrame',
+'signals':{"currentChanged (int)":"index"
+	}
+}
+
+QTabWidget = {
+'inherits':'QWidget',
+'signals':{
+			"currentChanged (int)":'index',
+			"tabCloseRequested (int)":'index'
+	}
+}
+
+QMdiArea = {
+'inherits':'QAbstractScrollArea',
+'signals':{
+		"subWindowActivated (QMdiSubWindow *)":""
+	}
+}
+
+QDockWidget = {
+'inherits':'QWidget',
+'signals':{
+		'allowedAreasChanged (Qt::DockWidgetAreas)':'',
+		'dockLocationChanged (Qt::DockWidgetArea)':'',
+		'featuresChanged (QDockWidget::DockWidgetFeatures)':'',
+		'topLevelChanged (bool)':'value',
+		'visibilityChanged (bool)':'value'
+	}
+}
+
+QFontComboBox = {
+'inherits':'QComboBox.',
+'signals':{
+		'currentFontChanged (const QFont&)':'font'
+	}
+}
+
+QTextBrowser = {
+'inherits':'QTextEdit',
+'signals':{
+	'anchorClicked (const QUrl&)':'value',
+	'backwardAvailable (bool)':'value',
+	'forwardAvailable (bool)':'value',
+	'highlighted (const QUrl&)':'QUrl|value',
+	'highlighted (const QString&)':'QCore.QString|value',
+	'historyChanged ()':'',
+	'sourceChanged (const QUrl&)':'value'
+	}
+}
+
+QGraphicsView = {
+'inherits':'QAbstractScrollArea.',
+'signals':{
+	}
+}
+
+QWebView = {
+'inherits':'QWidget',
+'signals':{
+	'iconChanged ()':'',
+	'linkClicked (const QUrl&)':'index',
+	'loadFinished (bool)':'value',
+	'loadProgress (int)':'value',
+	'loadStarted ()':'',
+	'selectionChanged ()':'',
+	'statusBarMessage (const QString&)':'value',
+	'titleChanged (const QString&)':'text',
+	'urlChanged (const QUrl&)':'txturl'
+	}
+}
+
+
+QLine = {
+'inherits':None,
+'signals':{
+	}
+}
+
+
+#~ = {
 #~ 'inherits':'',
 #~ 'signals':{
-    #~ }
+	#~ }
 #~ }
+
+
 
 #############################################################################################
 
 Widgets = {
-'QAction':QAction,
 'QAbstractButton':QAbstractButton,
 'QAbstractItemView':QAbstractItemView,
 'QAbstractSpinBox':QAbstractSpinBox,
-'QCheckBox':QCheckBox,
+'QAction':QAction,
 'QCalendarWidget':QCalendarWidget,
-'QCommandLinkButton':QCommandLinkButton,
-'QComboBox':QComboBox,
+'QCheckBox':QCheckBox,
 'QColumnView':QColumnView,
+'QComboBox':QComboBox,
+'QCommandLinkButton':QCommandLinkButton,
 'QDateEdit':QDateEdit,
 'QDateTimeEdit':QDateTimeEdit,
 'QDialog':QDialog,
 'QDialogButtonBox':QDialogButtonBox,
+'QDockWidget':QDockWidget,
+'QFontComboBox':QFontComboBox,
+'QFrame':QFrame,
+'QGraphicsView':QGraphicsView,
 'QGroupBox':QGroupBox,
 'QLabel':QLabel,
-'QListView':QListView,
+'QLine':QLine,
 'QLineEdit':QLineEdit,
+'QListView':QListView,
 'QListWidget':QListWidget,
 'QMainWindow':QMainWindow,
+'QMdiArea':QMdiArea,
 'QMenu':QMenu,
 'QMenuBar':QMenuBar,
 'QObject':QObject,
+'QPlainTextEdit':QPlainTextEdit,
 'QProgressBar':QProgressBar,
 'QPushButton':QPushButton,
-'QPlainTextEdit':QPlainTextEdit,
 'QRadioButton':QRadioButton,
+'QScrollArea':QScrollArea,
 'QSpinBox':QSpinBox,
 'QStatusBar':QStatusBar,
 'QTableView':QTableView,
 'QTableWidget':QTableWidget,
 'QTabWidget':QTabWidget,
+'QTabWidget':QTabWidget,
+'QTextBrowser':QTextBrowser,
 'QTextEdit':QTextEdit,
+'QToolBox':QToolBox,
+'QToolButton':QToolButton,
 'QTreeView':QTreeView,
 'QTreeWidget':QTreeWidget,
-'QToolButton':QToolButton,
+'QWebView':QWebView,
 'QWidget':QWidget,
-'QWizard':QWizard
+'Qwizard':QWizard
 }
 
 plantilla_metodo = 'def on_nombreWidget_senial(self):\n    pass\n\n'
