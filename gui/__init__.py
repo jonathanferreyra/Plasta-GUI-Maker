@@ -7,7 +7,6 @@ from PyQt4 import QtGui
 
 from mainform import MainForm
 from guimaker import GuiMaker
-from opciones import Opciones
 from senales import Senales
 
 class GUI(QtGui.QMainWindow):
@@ -17,7 +16,6 @@ class GUI(QtGui.QMainWindow):
         self.cliptboard = app.clipboard()
 #        self.gm = GuiMaker(self)
         self.mainform = MainForm(self)
-        self.opciones = Opciones(self)
         self.mainform.show()
 #        self.gm.show()
         sys.exit(app.exec_())
@@ -38,17 +36,7 @@ class GUI(QtGui.QMainWindow):
 		from generar_plantilla_ui import GenerarPlantillaUI
 		self.gpui = GenerarPlantillaUI(parent)
 		self.gpui.show()
-		
-    def cargarListaCamposBD(self, datos) : 
-        self.gm.cargarCamposDesdeBD(datos)
-        
-    def setOpcionesGeneracion(self, opciones) :
-        self.gm.opcionesGeneracion = opciones
-        
-    def getOpcionesGeneracion(self) :
-        return self.opciones.getOpcionesGeneracion()
-        
-        
+        		
 def main():
     #~ app = QtGui.QApplication(sys.argv)
     gui = GUI()

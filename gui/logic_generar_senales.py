@@ -60,13 +60,11 @@ class LogicaGenerarSenales():
             else:
                 return ''  
     
-        
     def getWidgetsFromUI(self, ruta):        
         if ruta:             
             widgets = self.obtenerWidgetDesdeUI( ruta )
             return widgets
                         
-              
     def agregarSenial(self, widget, nombre, signal):
         self.seniales.append({
         'widget':widget,

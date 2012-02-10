@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#       
-#       Copyright 2011 Jonathan Ferreyra <jalejandroferreyra@gmail.com>
-#       
+#
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
 #       the Free Software Foundation; either version 2 of the License, or
@@ -18,19 +16,16 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
+from storm.locals import *
+$imports$
 
-from gui import GUI
+class $nombre_clase$ ($herencia$):
+    
+    __storm_table__ = "$nombre_objeto$"
 
-GUI()
-
-#TODO: no agrega qdialog al py
-#TODO: no agrega qdialog al py(2)
-#TODO: no agrega el nombre del ui al py
-#TODO: no queda bien armado el ui en qdialog (agregar expanzor vertical)
-#TODO: si hay boton guardar que te permita agregar el metodo guardar
-#TODO: crear un metodo extractor de datos
-#TODO: titulo en el dialogo
-#TODO: agregar spinbox
-#TODO: agregar QdateEdit
-
-#TODO: reemplazar espacion por _ en nombre widget
+    SQLTABLE = $sql_table$
+    
+$atributos_clase$
+    
+    def __init__(self$parametros$):
+$atributos_init$

@@ -49,12 +49,8 @@ class GenerarSenalesPy(QtGui.QMainWindow):
         self.__setScintillaProperties(self.qscSignals)
 
         self.logica = LogicaGenerarSenales()
-        #~ self.tabla = MyTableWidget(self.twWidgets,["Tipo","Nombre"],False)
         self.arbolWidgets = TreeView(self.treeWidgets,self.on_arbolWidgets_selectedItem,self.connect)
         self.arbolWidgets.widget.setAcceptDrops(True)
-        self.connect(self.arbolWidgets.widget, QtCore.SIGNAL('dropEvent()'),self.dropEventTree)
-        self.connect(self.arbolWidgets.widget, QtCore.SIGNAL('dragEnterEvent()'),self.dragEnterEventTree)
-        self.connect(self.arbolWidgets.widget, QtCore.SIGNAL('dragMoveEvent()'),self.dragMoveEventTree)
         self.cliptboard = cliptboard
         self.nombre_widget = ''
                 
@@ -65,19 +61,7 @@ class GenerarSenalesPy(QtGui.QMainWindow):
         resolution = QtGui.QDesktopWidget().screenGeometry()
         self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
-
-    def dropEventTree(self, event):
-        
-        print 'ohhhhhhhhhhhhh'
-        print event.mimeData().hasUrls()
-        pass
-        
-    def dragEnterEventTree(self, event):
-        event.acceptProposedAction()
-        
-    def dragMoveEventTree(self, event):
-        event.acceptProposedAction()
-        
+       
     @QtCore.pyqtSlot()
     def on_btAbrirPy_clicked(self):
         self.qscArchivo.setText(

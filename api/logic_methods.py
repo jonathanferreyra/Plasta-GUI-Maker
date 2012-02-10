@@ -81,7 +81,7 @@ class LogicMethods():
         
     def obtenerContenidoPlantilla(self):
         import os
-        plantilla = open(os.getcwd() + '/api/plantilla_clase.py','r')
+        plantilla = open(os.getcwd() + '/plantillas/plantilla_clase.py','r')
         contenido = unicode(plantilla.read(),'utf-8')
         plantilla.close()
         return contenido

@@ -7,7 +7,7 @@ import os,sys
 from PyQt4 import QtCore, QtGui, uic
 from mytablewidget import MyTableWidget 
 import pathtools
-import api
+from api import gui_maker
 
 class GuiMaker(QtGui.QMainWindow):
     """La ventana principal de la aplicación."""
@@ -19,13 +19,17 @@ class GuiMaker(QtGui.QMainWindow):
         uifile = os.path.join(os.path.abspath(os.path.dirname(__file__)),FILENAME)
         uic.loadUi(uifile, self)
         self.__center()
+        self.setWindowState(QtCore.Qt.WindowMaximized)
         
         self.gui = parent
-        self.lwWidgets = MyTableWidget(self.lstWidgets,['Nombre','Widget'],False)
+        self.lwWidgets = MyTableWidget(self.lstWidgets,['Nombre','Widget'])
         #~ self.lwCamposBD = MyTableWidget(self.lstCamposBD,['Campo','Tipo'],False)
         ### Atributos
         
         self.__widgets = []
+        self.__opcionesGeneracion = {}            
+        self.__botones = {}
+        
         self.datosCampos = None
         self.opcionesGeneracion = {}
         
@@ -40,32 +44,58 @@ class GuiMaker(QtGui.QMainWindow):
         if self.leSalida.text() == '' :
             QtGui.QMessageBox.warning(self, "Qt Gui Maker","No se ha seleccionado un destino para el archivo de salida.")
         else:
-            self.__generarUI()            
-        pass
+            if len(self.__widgets) != 0 :                
+                self.__generarUI()
+            else:
+                QtGui.QMessageBox.warning(self, "Qt Gui Maker","No hay widgets para generar.")            
     
     @QtCore.pyqtSlot()
     def on_btAgregar_clicked(self):
-        item = [self.__toUnicode(self.leNombre.text()), 
-                self.__toUnicode(
-                    self.cbWidget.itemText(self.cbWidget.currentIndex()))]
-        self.lwWidgets.appendItem(item)        
-        self.leNombre.setText('')      
-        
-        self.__widgets.append([len(self.__widgets), item[0], item[1] ])  
+        if not self.leNombre.text().isEmpty() :
+            item = [self.__toUnicode(self.leNombre.text()), 
+                    self.__toUnicode(
+                        self.cbWidget.itemText(self.cbWidget.currentIndex()))]
+            self.lwWidgets.appendItem(item)        
+            self.leNombre.setText('')            
+            nombre_widget = item[0].replace(' ','_') if item[0].strip().find(' ') != -1 else item[0]
+            tipo_widget = item[1]
+            self.__widgets.append([len(self.__widgets), nombre_widget, tipo_widget])  
     
     @QtCore.pyqtSlot()
     def on_btArriba_clicked(self):
-        pass
-    
+        indice = self.lwWidgets.getSelectedCurrentIndex()
+        print indice
+        if indice > 0 :
+            valor_up = self.__widgets[indice]
+            valor_down = self.__widgets[indice - 1]
+            self.__widgets[indice - 1] = valor_up
+            self.__widgets[indice] = valor_down
+            # vuelve a cargar la lista
+            self.lwWidgets.addItems( [elemento[1:] for elemento in self.__widgets] )
+            
     @QtCore.pyqtSlot()
     def on_btAbajo_clicked(self):
-        pass
-        
+        indice = self.lwWidgets.getSelectedCurrentIndex()
+        if (indice < len(self.__widgets) ) :
+            valor_down = self.__widgets[indice]
+            valor_up = self.__widgets[indice + 1]
+            self.__widgets[indice + 1] = valor_down
+            self.__widgets[indice] = valor_up
+            # vuelve a cargar la lista
+            self.lwWidgets.addItems( [elemento[1:] for elemento in self.__widgets] )
+   
+    @QtCore.pyqtSlot()
+    def on_btQuitar_clicked(self):
+        # obtiene el indice en la lista en donde esta ubicado el elemento seleccionado
+        indice = self.lwWidgets.getSelectedCurrentIndex()
+        del self.__widgets[ indice ]
+        # vuelve a cargar la lista
+        self.lwWidgets.addItems( [elemento[1:] for elemento in self.__widgets] )
+             
     @QtCore.pyqtSlot()
     def on_btExaminar_clicked(self):
         self.leSalida.setText(
             self.__guardarArchivo())
-        pass
     
     @QtCore.pyqtSlot()
     def on_btAbrirSqlite_clicked(self):
@@ -82,9 +112,16 @@ class GuiMaker(QtGui.QMainWindow):
     def on_leNombre_returnPressed(self):
         self.on_btAgregar_clicked()
         
-    def on_arbolWidgets_selectedItem(self):
-		pass
-		
+    @QtCore.pyqtSlot()
+    def on_rbMainWindow_clicked(self):
+        self.rbDialog.setChecked(False)
+        self.rbMainWindow.setChecked(True)
+        
+    @QtCore.pyqtSlot()
+    def on_rbDialog_clicked(self):
+        self.rbMainWindow.setChecked(False)
+        self.rbDialog.setChecked(True)
+        
 ######################
 # METODOS AUXILIARES #
 ######################
@@ -114,8 +151,8 @@ class GuiMaker(QtGui.QMainWindow):
             dialog = QtGui.QFileDialog(self, 'Abrir SQLite')
             dialog.setFileMode(QtGui.QFileDialog.AnyFile)
             dialog.setAcceptMode(QtGui.QFileDialog.AcceptOpen)
-            dialog.setDefaultSuffix("db")
-            dialog.setNameFilter('SQLite Databases (*.db)')
+            #dialog.setDefaultSuffix("db")
+            #dialog.setNameFilter('SQLite Databases (*.db)')
             
             if dialog.exec_():
                 filename = dialog.selectedFiles()[0] # convierte a unicode el string
@@ -131,9 +168,8 @@ class GuiMaker(QtGui.QMainWindow):
         for widget in self.__widgets :
             widgets_a_generar[widget[0]] = {widget[1]:widget[2]}
                                 
-        opts, btns = self.gui.getOpcionesGeneracion()  
-        print opts, btns
-        api.generarUI(
+        opts, btns = self.getOpcionesGeneracion()  
+        gui_maker.generarUI(
             self.__toUnicode(self.leSalida.text()),
             widgets_a_generar,
             botones = btns,
@@ -158,7 +194,7 @@ class GuiMaker(QtGui.QMainWindow):
         import os.path
         
         origen = pathtools.convertPath(
-            pathtools.getPathRootFolder()+'/api/plantilla.py')
+            pathtools.getPathRootFolder()+'/plantillas/plantilla.py')
         
         nombre_archivo = os.path.basename(destino)[:-3]
         
@@ -179,6 +215,29 @@ class GuiMaker(QtGui.QMainWindow):
         homedir = pathtools.convertPath(homedir + '/untitled.ui')
         self.leSalida.setText(homedir)
     
+    def getOpcionesGeneracion(self):
+        """ """
+        if self.chkGenerarPlantilla.isChecked() :            
+            self.__opcionesGeneracion['generar_plantilla'] = True
+        
+        # botones
+        
+        if self.rbBtnsSA.isChecked() :
+            self.__botones['bt_salir_aceptar'] = True
+        if self.rbBtnsSG.isChecked() :
+            self.__botones['bt_salir_guardar'] = True
+        if self.rbBtnsCA.isChecked() :
+            self.__botones['bt_cancelar_aceptar'] = True
+        if self.chkBtnsLimpiar.isChecked() :
+            self.__botones['bt_limpiar'] = True
+        
+        if self.rbMainWindow.isChecked():
+            self.__opcionesGeneracion['tipo'] = 'MainWindow'
+        if self.rbDialog.isChecked():
+            self.__opcionesGeneracion['tipo'] = 'Dialog'
+            
+        return self.__opcionesGeneracion, self.__botones
+        
 def main():
     app = QtGui.QApplication(sys.argv)
     window = GuiMaker()

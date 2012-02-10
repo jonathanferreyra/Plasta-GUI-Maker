@@ -20,8 +20,6 @@ class SeleccionarCampos(QtGui.QDialog):
         uic.loadUi(uifile, self)
         self.center()
         
-        if not pathBD :
-            pathBD = '/media/Data/Dropbox/Proyectos/GUIMaker/extras/jaja.db'
         self.__bd = sqlite(pathBD)
         self.__camposSeleccionados = []
         self.__camposActuales = []            
@@ -30,7 +28,7 @@ class SeleccionarCampos(QtGui.QDialog):
         
         self.lbUbicacion.setText(pathBD)
         self.__cargarTablas()
-        self.lwCamposElegidos = MyTableWidget(self.lstCamposElegidos, ['Campo', 'Widget'], False)
+        self.lwCamposElegidos = MyTableWidget(self.lstCamposElegidos, ['Campo', 'Widget'])
 
 ##########################
 # METODOS DE LOS EVENTOS #
@@ -38,7 +36,7 @@ class SeleccionarCampos(QtGui.QDialog):
     
     @QtCore.pyqtSlot()
     def on_btAceptar_clicked(self):        
-        self.papa.gui.cargarListaCamposBD(self.__camposSeleccionados)
+        self.papa.cargarCamposDesdeBD(self.__camposSeleccionados)
         self.close()
 
     @QtCore.pyqtSlot()
@@ -53,6 +51,9 @@ class SeleccionarCampos(QtGui.QDialog):
     @QtCore.pyqtSlot(int)
     def on_cbTablas_currentIndexChanged(self):
         self.__cargarCamposTabla()
+    
+    def on_lstCamposBD_doubleClicked(self , index):
+        self.on_btIncluirCampo_clicked()
     
 ######################
 # METODOS AUXILIARES #
@@ -104,7 +105,7 @@ class SeleccionarCampos(QtGui.QDialog):
         estructura = self.__bd.getEstructuraTabla(tabla)
 
         self.__camposActuales = []
-        self.lwCamposBD = MyTableWidget(self.lstCamposBD,['Campo','Tipo'],False)
+        self.lwCamposBD = MyTableWidget(self.lstCamposBD,['Campo','Tipo'])
         
         for campo in estructura:
             self.__camposActuales.append([campo,estructura[campo]])

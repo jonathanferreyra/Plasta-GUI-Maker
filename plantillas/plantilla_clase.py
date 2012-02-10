@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #       
-#       Copyright 2011 Jonathan Ferreyra <jalejandroferreyra@gmail.com>
-#       
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
 #       the Free Software Foundation; either version 2 of the License, or
@@ -20,53 +18,32 @@
 
 import os,sys
 from PyQt4 import QtCore, QtGui, uic
-from images import qtgui_art
 
 
-class MainForm(QtGui.QMainWindow):
-
-    def __init__(self, parent = None, pathBD = None):
-        FILENAME = 'mainform.ui'
-        QtGui.QMainWindow.__init__(self)    
+class %nombre_clase%(QtGui.%tipo_ventana%):
+    """La ventana principal de la aplicación."""
+    
+    def __init__(self, parent = None):
+        FILENAME = '%nombre_ui%.ui'
+        QtGui.%tipo_ventana%.__init__(self)
         uifile = os.path.join(os.path.abspath(os.path.dirname(__file__)),FILENAME)
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
         
-        self.gui = parent
-        
+        self.parent = parent
+
     def __centerOnScreen (self):
         '''Centers the window on the screen.'''
         resolution = QtGui.QDesktopWidget().screenGeometry()
         self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
-                  (resolution.height() / 2) - (self.frameSize().height() / 2))    
-    
-    @QtCore.pyqtSlot()
-    def on_btSenalesPy_clicked(self):
-        from generar_senales import GenerarSenalesPy
-        self.senales = GenerarSenalesPy(cliptboard = self.gui.cliptboard)
-        self.senales.show()
-    
-    @QtCore.pyqtSlot()
-    def on_btUINuevo_clicked(self):
-        from guimaker import GuiMaker
-        self.gm = GuiMaker(self.gui)
-        self.gm.show()
-          
-    @QtCore.pyqtSlot()
-    def on_btGenerarPlantilla_clicked(self):
-        from generar_plantilla_ui import GenerarPlantillaUI
-        self.gpui = GenerarPlantillaUI(self.gui)
-        self.gpui.show()
+                  (resolution.height() / 2) - (self.frameSize().height() / 2))
         
-    @QtCore.pyqtSlot()
-    def on_btGenerarStormUi_clicked(self):
-        from storm_gui_maker import StormGuiMaker
-        self.sgm = StormGuiMaker(self.gui)
-        self.sgm.show()
-        
+%metodos_auxiliares%
+%metodos_senales%
+    
 def main():
     app = QtGui.QApplication(sys.argv)
-    window = MainForm()
+    window = %nombre_clase%()
     window.show()
     sys.exit(app.exec_())
 

@@ -52,7 +52,7 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         self.path_ui = ''
         
         self.arbolWidgets = TreeView(self.treeWidgets,self.on_arbolWidgets_selectedItem,self.connect)        
-        self.tablaMetodos = MyTableWidget(self.twMetodos,['Metodo'],True)
+        self.tablaMetodos = MyTableWidget(self.twMetodos,['Metodo'])
         
         # llamada a metodos
         lexer = QsciLexerPython()
