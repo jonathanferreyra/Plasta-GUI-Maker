@@ -19,6 +19,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout_13">
       <item>
        <widget class="QCommandLinkButton" name="clbtLevantarClaseStorm">
+        <property name="toolTip">
+         <string>Leer informacion desde una clase existente y agregarla a los datos actuales.</string>
+        </property>
         <property name="text">
          <string>Levantar Clase Storm</string>
         </property>
@@ -137,7 +140,11 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="leNombre"/>
+                <widget class="QLineEdit" name="leNombre">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </item>
@@ -152,6 +159,9 @@
                </item>
                <item>
                 <widget class="QComboBox" name="cbWidget">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
                  <item>
                   <property name="text">
                    <string>QLineEdit</string>
@@ -203,6 +213,9 @@
                </item>
                <item>
                 <widget class="QComboBox" name="cbStormType">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
                  <property name="currentIndex">
                   <number>11</number>
                  </property>
@@ -283,7 +296,11 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="leValorPorDefecto"/>
+                <widget class="QLineEdit" name="leValorPorDefecto">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(255, 255, 255);</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </item>
@@ -320,7 +337,11 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="leNombreReferencia"/>
+               <widget class="QLineEdit" name="leNombreReferencia">
+                <property name="styleSheet">
+                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
@@ -349,16 +370,22 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">QPushButton{
-	background-color: rgb(85, 170, 0);
-border-radius:3px;
-padding:4px;
+            <string notr="true">QPushButton {
+	background: #DBDBDB;
+	border-radius: 3px;
+	color:#353535;
+	border: 1px solid #A0A197;
+	padding:8px;
 }
 
 QPushButton:pressed{
-	background-color: rgb(106, 213, 0);
-border-radius:3px;
-padding:4px;
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                            stop: 0 #dadbde, stop: 1 #f6f7fa);		
+	border: 1px solid #505050;
+}
+QPushButton:hover{
+         background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                           stop: 0 #dadbde, stop: 1 #f6f7fa);
 }</string>
            </property>
            <property name="text">
