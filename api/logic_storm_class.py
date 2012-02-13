@@ -97,7 +97,7 @@ class LogicStormClass():
         self.__generarReferencias(atributos)
         self.__generarAtributosInit(atributos)
         self.__generarParametrosInit(atributos)
-        self.__generarSQLTable(database, atributos)
+        #self.__generarSQLTable(database, atributos)
 
         
         clase = self.obtenerContenidoPlantilla()
