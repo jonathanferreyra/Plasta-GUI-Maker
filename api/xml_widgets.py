@@ -142,7 +142,7 @@ evento_cerrar_ventana = u'''<connections>
 #~ 1- Nombre del entry
 
 lineedit = u'''<item>
-       <widget class="QLineEdit" name="le#nombre_widget#">
+       <widget class="QLineEdit" name="#prefijo##nombre_widget#">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -157,7 +157,7 @@ lineedit_with_btref = u'''<item><layout class="QHBoxLayout" name="hl_#nombre_wid
         <number>0</number>
        </property>
        <item>
-        <widget class="QLineEdit" name="le#nombre_widget#">
+        <widget class="QLineEdit" name="#prefijo##nombre_widget#">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -191,7 +191,7 @@ lineedit_with_btref = u'''<item><layout class="QHBoxLayout" name="hl_#nombre_wid
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>%imagen_boton%</normaloff>%imagen_boton%</iconset>
+           <normaloff>find.png</normaloff>find.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -208,7 +208,7 @@ lineedit_with_btref = u'''<item><layout class="QHBoxLayout" name="hl_#nombre_wid
 #~ 1- Nombre del combo
 
 combobox = u'''<item>
-       <widget class="QComboBox" name="cb#nombre_widget#"><!-- Cambio -->
+       <widget class="QComboBox" name="#prefijo##nombre_widget#"><!-- Cambio -->
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -223,7 +223,7 @@ combobox = u'''<item>
 #~ 2- Etiqueta del radiobutton
 
 radiobutton = u'''<item>
-       <widget class="QRadioButton" name="rb#nombre_widget#">
+       <widget class="QRadioButton" name="#prefijo##nombre_widget#">
         <property name="text">
          <string>#nombre_campo#</string>
         </property>
@@ -241,7 +241,7 @@ radiobutton = u'''<item>
 #~ 2- Etiqueta del checkbox
 
 checkbox = u'''<item>
-       <widget class="QCheckBox" name="chk#nombre_widget#">
+       <widget class="QCheckBox" name="#prefijo##nombre_widget#">
         <property name="text">
          <string>#nombre_campo#</string>
         </property>
