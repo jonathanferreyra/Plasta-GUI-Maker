@@ -259,7 +259,7 @@ padding:6px;
           <x>0</x>
           <y>0</y>
           <width>276</width>
-          <height>533</height>
+          <height>309</height>
          </rect>
         </property>
         <attribute name="label">
@@ -474,7 +474,7 @@ padding:6px;
           <x>0</x>
           <y>0</y>
           <width>268</width>
-          <height>533</height>
+          <height>290</height>
          </rect>
         </property>
         <attribute name="label">
@@ -710,7 +710,7 @@ padding:6px;
                    <enum>Qt::TabFocus</enum>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>4</number>
                   </property>
                   <item>
                    <property name="text">

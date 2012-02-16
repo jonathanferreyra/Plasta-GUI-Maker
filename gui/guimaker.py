@@ -167,6 +167,8 @@ class GuiMaker(QtGui.QMainWindow):
         
         for widget in self.__widgets :
             widgets_a_generar[widget[0]] = {widget[1]:widget[2]}
+            
+        print widgets_a_generar
                                 
         opts, btns = self.getOpcionesGeneracion()  
         gui_maker.generarUI(
@@ -217,21 +219,17 @@ class GuiMaker(QtGui.QMainWindow):
     
     def getOpcionesGeneracion(self):
         """ """
-        if self.chkGenerarPlantilla.isChecked() :            
-            self.__opcionesGeneracion['generar_plantilla'] = True
+        
+        self.__opcionesGeneracion['generar_plantilla'] = self.chkGenerarPlantilla.isChecked()
         
         # botones
         
-        if self.rbBtnsSA.isChecked() :
-            self.__botones['bt_salir_aceptar'] = True
-        if self.rbBtnsSG.isChecked() :
-            self.__botones['bt_salir_guardar'] = True
-        if self.rbBtnsCA.isChecked() :
-            self.__botones['bt_cancelar_aceptar'] = True
-        if self.chkBtnsLimpiar.isChecked() :
-            self.__botones['bt_limpiar'] = True
         
-        if self.rbMainWindow.isChecked():
+        self.__botones['bt_salir_aceptar'] = self.rbBtnsSA.isChecked()
+        self.__botones['bt_salir_guardar'] = self.rbBtnsSG.isChecked()
+        self.__botones['bt_cancelar_aceptar'] = self.rbBtnsCA.isChecked()
+        self.__botones['bt_limpiar'] = self.chkBtnsLimpiar.isChecked()
+        if self.rbMainWindow.isChecked() :
             self.__opcionesGeneracion['tipo'] = 'MainWindow'
         if self.rbDialog.isChecked():
             self.__opcionesGeneracion['tipo'] = 'Dialog'
