@@ -108,15 +108,19 @@ def __generarWidgets(dic_campos, botones = {}):
         print campos
         nombre_campo = __normalizarNombreCampo( campos['atribute'] )
         nombre_widget = __normalizarNombreWidget( campos['atribute'] )
+        prefijo_widget = prefijos_widgets.prefijos[ campos['widget_type'] ]
         # primero, obtiene el xml correspondiente al tipo de widget actual, 
         # y lo mezcla con el del label
         # luego, reemplaza los %--% por el nombre actual del campo
         
         xml_widget = __getXmlWidget(campos)
         widget_actual = (xml_widgets.par_label_layout % (longitud_labels, xml_widget))            
-        # si este widget, posee nombre de campo, lo reemplaza   
+        # si este widget, posee nombre de campo, lo reemplaza
         if widget_actual.find(u'#nombre_campo#') != -1 :
             widget_actual = widget_actual.replace(u'#nombre_campo#',nombre_campo)
+        # reemplaza el prefijo del widget
+        widget_actual = widget_actual.replace(u'#prefijo#',prefijo_widget)
+        
         widget_actual = widget_actual.replace(u'#nombre_widget#',nombre_widget)
         tamano_layout += 40 # incrementa para  ubicar el proximo widget
         codigo_widgets +=  widget_actual + '\n'
@@ -254,9 +258,9 @@ botones_ejemplo = {
 'bt_salir_guardar':True
 }
 
-#generarUI('/home/mike/prueba001.ui',
-#campos_ejemplo,
-#opciones = opciones_ejemplo,
-#botones = botones_ejemplo)
+generarUI('/home/mike/prueba001.ui',
+campos_ejemplo,
+opciones = opciones_ejemplo,
+botones = botones_ejemplo)
 
 #~ print prueba(pru)
