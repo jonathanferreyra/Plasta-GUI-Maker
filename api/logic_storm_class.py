@@ -16,7 +16,7 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-import os
+import os, os.path
 #############################################################################################
 class LogicStormClass():
     
@@ -76,7 +76,7 @@ class LogicStormClass():
         }                                                               
         }
     
-    def generarClase(self, destino, nombre_clase, atributos, database = 'SQLite'):
+    def generarClase(self, destino, nombre_clase, atributos, database = 'SQLite', package = False):
         """
         Genera una clase Storm con las condiciones especificadas.
         
@@ -135,8 +135,11 @@ class LogicStormClass():
             clase = clase.replace('$herencia$', "Storm")
         else:
             clase = clase.replace('$herencia$', "object")
-            
-        self.guardarClase(destino, clase)      
+        
+        if package == True :
+            self.generarPaquete(nombre_clase, destino, clase)
+        else:
+            self.guardarClase(destino, clase)      
         
         return True
             
@@ -209,6 +212,7 @@ class LogicStormClass():
         A partir de los datos de los atributos verifica si es necesario
         generar la cadena de atributos de clase que NO contienen referencias.
         """
+        self.__atributos_clase += '    ide = Int(primary = True)\n'
         un_atributo_clase = ''
         valor, texto = None, ''
         for index in range(len(atributos)):
@@ -274,6 +278,17 @@ class LogicStormClass():
 %s
         )'''""" % campos
                 
+    def generarPaquete(self, nombre_clase, destino, clase):
+        
+        # obtiene el directorio de esta ruta        
+        directory = self.convertPath( os.path.dirname(destino[:-3]) + '/' )
+        print directory
+        generate_in = self.convertPath(directory + nombre_clase.lower() + '/' )
+        print generate_in
+        # crea la carpeta para esta clase
+        os.mkdir( generate_in )
+        self.guardarClase(generate_in + '__init__.py', clase)
+        
     def obtenerContenidoPlantilla(self):
         import os
         plantilla = open(self.pathPlantilla,'r')
@@ -294,7 +309,15 @@ class LogicStormClass():
             campo.replace('  ',' ')
         campo = campo.replace(' ','_')
         return campo
-
+    
+    def convertPath(self,path):
+        """Convierte el path a el específico de la plataforma (separador)"""
+        import os
+        if os.name == 'posix':
+            return "/"+apply( os.path.join, tuple(path.split('/')))
+        elif os.name == 'nt':
+            return apply( os.path.join, tuple(path.split('/')))
+        
 if __name__ == "__main__":
     p = LogicStormClass()
     pass

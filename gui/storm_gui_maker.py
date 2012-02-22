@@ -22,6 +22,10 @@ from mytablewidget import MyTableWidget
 from api import gui_maker
 from api.logic_storm_class import LogicStormClass
 
+
+#TODO: autosugerir el nombre de la clase al nombre del archivo para guardar
+#TODO: permitir crear paquete __init__ del objeto en cuestion
+
 class StormGuiMaker(QtGui.QMainWindow):
     """La ventana principal de la aplicación."""
     
@@ -75,7 +79,7 @@ class StormGuiMaker(QtGui.QMainWindow):
     @QtCore.pyqtSlot()
     def on_btExaminar_clicked(self):
         self.leUbicacion.setText(
-            self.abrirArchivoPython())
+            self.guardarArchivoPython())
     
     @QtCore.pyqtSlot()
     def on_btGenerar_clicked(self):
@@ -85,30 +89,35 @@ class StormGuiMaker(QtGui.QMainWindow):
             self.leUbicacion.setStyleSheet('background-color: rgb(255, 155, 155);')
         
     def on_twLista_doubleClicked(self , index):
-        print index
         pass
     
     def on_clbtLevantarClaseStorm_pressed(self):
-        self.abrirArchivoPython()
+        self.guardarArchivoPython()
     
     @QtCore.pyqtSlot()
     def on_gbReferencia_clicked(self):
        self.leNombreReferencia.setText(
            unicode(self.leNombre.text().toUtf8(),'utf-8').capitalize())
     
+#    @QtCore.pyqtSlot()
+#    def on_chkGenerarPaquete_clicked(self):
+#        ruta = ''
+#        if self.chkGenerarPaquete.isChecked() :
+#            ruta = os.path.splitext( unicode(self.leUbicacion.text().toUtf8(),'utf-8') )[0]
+#        else:
+#            ruta = os.path.splitext( unicode(self.leUbicacion.text().toUtf8(),'utf-8') )[0] + unicode(self.leNombreClase.text().toUtf8(),'utf-8').lower()
+#        self.leUbicacion.setText( ruta )
+    
 ########################################################################
     
-    def abrirArchivoPython(self):
+    def guardarArchivoPython(self):
         u""" Muestra un cuadro de dialogo desde donde seleccionar un archivo. """
-        dialog = QtGui.QFileDialog(None, 'Abrir archivo Python')
-        dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-        dialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)
-        dialog.setDefaultSuffix('py')
-        dialog.setNameFilter('Archivo fuente Python (*.py)')
-        
-        if dialog.exec_():
-            filename = dialog.selectedFiles()[0] # convierte a unicode el string
-            filename = unicode(filename, 'utf-8') # 
+        nombre_archivo = unicode(self.leNombreClase.text().toUtf8(),'utf-8')
+        dialog = QtGui.QFileDialog()   
+        dialog.setFileMode(QtGui.QFileDialog.Directory)
+        filename = dialog.getSaveFileName(self, 'Abrir archivo Python',filter='*.py')
+        if filename != '' :
+            filename = unicode(filename, 'utf-8') + '.py' 
             
             return filename
         else:
@@ -118,7 +127,7 @@ class StormGuiMaker(QtGui.QMainWindow):
             """ """
             dialog = QtGui.QFileDialog(self, 'Guardar .ui')
             dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-            dialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)
+            dialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)             
             dialog.setDefaultSuffix("ui")
             dialog.setNameFilter('Designer UI files (*.ui)')
             
@@ -138,7 +147,8 @@ class StormGuiMaker(QtGui.QMainWindow):
         logSC.generarClase(
             destino,
             nombre_clase,
-            self.atributos)
+            self.atributos,
+            package = self.chkGenerarPaquete.isChecked())
         
         QtGui.QMessageBox.information(self, "Generar clase Storm + .ui",u"Generación realizada con éxito")
         

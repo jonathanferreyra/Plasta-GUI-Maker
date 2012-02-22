@@ -105,7 +105,6 @@ def __generarWidgets(dic_campos, botones = {}):
     cant_campos = len(dic_campos)
     for nro_campo in range(cant_campos) :
         campos = dic_campos[nro_campo] 
-        print campos
         nombre_campo = __normalizarNombreCampo( campos['atribute'] )
         nombre_widget = __normalizarNombreWidget( campos['atribute'] )
         prefijo_widget = prefijos_widgets.prefijos[ campos['widget_type'] ]
@@ -258,9 +257,9 @@ botones_ejemplo = {
 'bt_salir_guardar':True
 }
 
-generarUI('/home/mike/prueba001.ui',
-campos_ejemplo,
-opciones = opciones_ejemplo,
-botones = botones_ejemplo)
+#generarUI('/home/mike/prueba001.ui',
+#campos_ejemplo,
+#opciones = opciones_ejemplo,
+#botones = botones_ejemplo)
 
 #~ print prueba(pru)

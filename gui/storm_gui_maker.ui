@@ -516,6 +516,16 @@ QPushButton:hover{
      </widget>
     </item>
     <item>
+     <widget class="QCheckBox" name="chkGenerarPaquete">
+      <property name="text">
+       <string>Generar paquete para este objeto.</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
        <widget class="QLabel" name="label_6">
@@ -614,12 +624,28 @@ QPushButton:pressed{
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>601</x>
-     <y>575</y>
+     <x>630</x>
+     <y>618</y>
     </hint>
     <hint type="destinationlabel">
      <x>460</x>
      <y>567</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>leNombre</sender>
+   <signal>returnPressed()</signal>
+   <receiver>btAgregar</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>236</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>300</x>
+     <y>313</y>
     </hint>
    </hints>
   </connection>
