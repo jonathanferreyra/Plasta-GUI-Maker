@@ -254,13 +254,36 @@ checkbox = u'''<item>
        </widget>
       </item>'''
 
+dateedit = u'''<item>
+     <widget class="QDateEdit" name="#prefijo##nombre_widget#">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="displayFormat">
+       <string>dd/MM/yyyy</string>
+      </property>
+      <property name="calendarPopup">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>'''
+    
+spinbox = '''<item>
+     <widget class="QSpinBox" name="#prefijo##nombre_widget#"/>
+    </item>'''
+    
 # diccionario que contiene el fuente de los distintos widgets
 source_widgets = {
 'QCheckBox':checkbox,
 'QRadioButton':radiobutton,
 'QComboBox':combobox,
 'QLineEdit':lineedit,
-'QLineEditWithReference':lineedit_with_btref
+'QLineEditWithReference':lineedit_with_btref,
+'QDateEdit':dateedit,
+'QSpinBox':spinbox
 }
 
 #TODO : agregar soporte para QDateEdit 
