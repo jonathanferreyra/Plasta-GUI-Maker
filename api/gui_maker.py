@@ -243,10 +243,15 @@ def generarUI(  destino,
 #}
 
 campos_ejemplo = {
-0:{'atribute':'apellido','widget_type':'QLineEdit','reference':True},
-1:{'atribute':'nombre','widget_type':'QLineEdit','reference':False},
-2:{'atribute':'dni','widget_type':'QLineEdit','reference':False},
-3:{'atribute':'direccion','widget_type':'QLineEdit','reference':False}
+0:{'atribute':'nombres','widget_type':'QLineEdit','reference':False},
+1:{'atribute':'telefono','widget_type':'QLineEdit','reference':False},
+2:{'atribute':'domicilio','widget_type':'QLineEdit','reference':False},
+3:{'atribute':'zona','widget_type':'QLineEdit','reference':False},
+4:{'atribute':'CP','widget_type':'QLineEdit','reference':False},
+5:{'atribute':'localidad','widget_type':'QLineEdit','reference':False},
+6:{'atribute':'fecha cumpleaños','widget_type':'QLineEdit','reference':False},
+7:{'atribute':'correo electronico','widget_type':'QLineEdit','reference':False}
+
 }
 
 opciones_ejemplo = {
@@ -257,7 +262,7 @@ botones_ejemplo = {
 'bt_salir_guardar':True
 }
 
-#generarUI('/home/mike/prueba001.ui',
+#generarUI('/home/mike/agregarCliente.ui',
 #campos_ejemplo,
 #opciones = opciones_ejemplo,
 #botones = botones_ejemplo)

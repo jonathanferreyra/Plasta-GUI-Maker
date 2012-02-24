@@ -509,6 +509,16 @@ QPushButton:hover{
      </widget>
     </item>
     <item>
+     <widget class="QCheckBox" name="chkGenerarClase">
+      <property name="text">
+       <string>Generar clase Storm.</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QCheckBox" name="chkGenerarUi">
       <property name="text">
        <string>Generar .ui para esta clase</string>

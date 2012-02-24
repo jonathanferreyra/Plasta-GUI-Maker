@@ -33,4 +33,3 @@ GUI()
 #TODO: agregar spinbox
 #TODO: agregar QdateEdit
 
-#TODO: reemplazar espacion por _ en nombre widget

@@ -44,7 +44,7 @@ class StormGuiMaker(QtGui.QMainWindow):
             "Primario","Not Null","Referencia","Cruzada"]
         )
             
-        self.widgets = []
+        self.widgets = {}
         self.atributos = {}
         
     def __centerOnScreen (self):
@@ -92,8 +92,9 @@ class StormGuiMaker(QtGui.QMainWindow):
         pass
     
     def on_clbtLevantarClaseStorm_pressed(self):
-        self.guardarArchivoPython()
-    
+        
+        print self.load_from_file( self.abrirArchivoPython() )
+            
     @QtCore.pyqtSlot()
     def on_gbReferencia_clicked(self):
        self.leNombreReferencia.setText(
@@ -123,20 +124,17 @@ class StormGuiMaker(QtGui.QMainWindow):
         else:
             return ''
             
-    def __guardarArchivo(self):
-            """ """
-            dialog = QtGui.QFileDialog(self, 'Guardar .ui')
-            dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-            dialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)             
-            dialog.setDefaultSuffix("ui")
-            dialog.setNameFilter('Designer UI files (*.ui)')
+    def abrirArchivoPython(self):
+        u""" Muestra un cuadro de dialogo desde donde seleccionar un archivo. """
+        nombre_archivo = unicode(self.leNombreClase.text().toUtf8(),'utf-8')
+        dialog = QtGui.QFileDialog()   
+        filename = dialog.getOpenFileName(self, 'Abrir archivo Python',filter='*.py')
+        if filename != '' :
+            filename = unicode(filename, 'utf-8') + '.py' 
             
-            if dialog.exec_():
-                filename = dialog.selectedFiles()[0] # convierte a unicode el string
-                filename = unicode(filename, 'utf-8') # 
-                
-                return filename
-            else: return ''
+            return filename
+        else:
+            return ''
     
     def generar(self):
         logSC = LogicStormClass()
@@ -144,12 +142,19 @@ class StormGuiMaker(QtGui.QMainWindow):
         destino = unicode(self.leUbicacion.text().toUtf8(),'utf-8')
         nombre_clase = unicode(self.leNombreClase.text().toUtf8(),'utf-8')
         
-        logSC.generarClase(
-            destino,
-            nombre_clase,
-            self.atributos,
-            package = self.chkGenerarPaquete.isChecked())
+        if self.chkGenerarClase.isChecked() :
+            logSC.generarClase(
+                destino,
+                nombre_clase,
+                self.atributos,
+                package = self.chkGenerarPaquete.isChecked())
         
+        if self.chkGenerarUi.isChecked() :
+            gui_maker.generarUI(
+                destino,
+                self.widgets,
+                opciones = {'tipo':'Dialog'},
+                botones = {'bt_salir_guardar':True})
         QtGui.QMessageBox.information(self, "Generar clase Storm + .ui",u"Generación realizada con éxito")
         
     
@@ -180,6 +185,15 @@ class StormGuiMaker(QtGui.QMainWindow):
         self.tablaAtributos.appendItem( elemento )
         
         self.reestablecerCampos()
+        
+        self.agregarWidget(un_atributo['atributo'], un_atributo['widget'], un_atributo['referencia'])
+        
+    def agregarWidget(self, atributo, widget_tipo, referencia):
+        self.widgets[ len(self.widgets) ] = {
+        'atribute':atributo,
+        'widget_type':widget_tipo,
+        'reference':referencia
+        }
         
     def cargarWidgets(self,datos, widgets):
         import PyQt4        
@@ -277,6 +291,38 @@ class StormGuiMaker(QtGui.QMainWindow):
         )
         self.gbReferencia.setChecked(False)
         
+    def obtenerClaseDesdeArchivo(self, module_name, class_name):
+#        globals()['QsciLexer'+lenguaje]()#cargador magico de clases
+        try:
+          __import__(module_name)
+          modul = sys.modules[module_name]
+          instance = modul.class_name() # obviously this doesn't works, here is my main problem!
+          print instance
+        except ImportError, msg:
+           # manage import error
+           print msg
+
+    def load_from_file(self, filepath):
+        import imp
+        class_inst = None
+        expected_class = 'MyClass'
+    
+        mod_name,file_ext = os.path.splitext(os.path.split(filepath)[-1])
+        py_mod = None
+        print 'mod_name, filepath>',mod_name, filepath[:-3]
+        if file_ext.lower() == '.py':
+            py_mod = imp.load_source(mod_name[:-3], filepath[:-3])
+            print py_mod
+    
+        elif file_ext.lower() == '.pyc':
+            py_mod = imp.load_compiled(mod_name, filepath)
+    
+        if expected_class in dir(py_mod):
+            print 'expected_class>',expected_class
+            class_inst = py_mod.MyClass() 
+    
+        return class_inst
+    
 def main():
     app = QtGui.QApplication(sys.argv)
     window = StormGuiMaker()
