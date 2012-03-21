@@ -23,8 +23,6 @@ class $nombre_clase$ ($herencia$):
     
     __storm_table__ = "$nombre_objeto$"
 
-    SQLTABLE = $sql_table$
-    
 $atributos_clase$
     
     def __init__(self$parametros$):

@@ -17,12 +17,14 @@
 #       MA 02110-1301, USA.
 
 import os, os.path
+from api import pathtools
 #############################################################################################
 class LogicStormClass():
     
     def __init__(self):
-        self.pathPlantilla = os.getcwd() + '/plantillas/plantilla_clase_storm.py'
-        
+        self.pathPlantilla = pathtools.convertPath(
+                pathtools.getPathProgramFolder() + '/plantillas/plantilla_clase_storm.py')
+        print 'self.pathPlantilla>Z',self.pathPlantilla
         self.__imports = ''
         self.__atributos_clase = ''
         self.__atributos_init = ''
@@ -227,10 +229,10 @@ class LogicStormClass():
                 if (atributo['primario'] == 'False') and (atributo['not_null'] == 'True') and (atributo['default'] != ''):                    
                     if atributo['storm_type'] == 'Int' :
                         valor = int(atributo['default'])
-                        texto = '(allow_none = True, value_factory = %d)' % valor
+                        texto = '(allow_none = False, value_factory = %d)' % valor
                     elif atributo['storm_type'] == 'Unicode' :
                         valor = int(atributo['default'])
-                        texto = '(allow_none = True, value_factory = %s)' % valor
+                        texto = '(allow_none = False, value_factory = %s)' % valor
                         
                     un_atributo_clase = un_atributo_clase.replace('()',texto)
                     

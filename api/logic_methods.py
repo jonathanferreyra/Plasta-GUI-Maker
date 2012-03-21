@@ -17,6 +17,7 @@
 #       MA 02110-1301, USA.
 
 import methods
+from api import pathtools
 
 #############################################################################################
 class LogicMethods():
@@ -80,8 +81,8 @@ class LogicMethods():
         plantilla.close()
         
     def obtenerContenidoPlantilla(self):
-        import os
-        plantilla = open(os.getcwd() + '/plantillas/plantilla_clase.py','r')
+        plantilla = open(pathtools.convertPath(
+                pathtools.getPathProgramFolder() + '/plantillas/plantilla_clase.py'),'r')
         contenido = unicode(plantilla.read(),'utf-8')
         plantilla.close()
         return contenido

@@ -23,7 +23,7 @@ import shutil
 import pathtools
 import prefijos_widgets
 import xml_widgets
-
+from os.path import join,abspath,dirname 
 ############################## Funciones ###############################
 
 def __palabra_mas_larga(palabra1, palabra2):
@@ -137,7 +137,7 @@ def __generarPlantilla(destino, tipo, metodos = None):
     nombre_archivo = os.path.basename(destino).split('.')[0] + '.py'
     ruta_destino = pathtools.convertPath(os.path.dirname(destino)+'/'+nombre_archivo)
     shutil.copyfile(
-            pathtools.convertPath( pathtools.getPathProgramFolder()+'/plantillas/plantilla.py' ),
+            pathtools.convertPath( join(abspath(dirname(__file__)),'/plantillas/plantilla.py' )),
             ruta_destino)
     
     archivo = open(ruta_destino,'r')
