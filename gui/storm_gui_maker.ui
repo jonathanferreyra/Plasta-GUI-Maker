@@ -6,49 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>750</width>
-    <height>631</height>
+    <width>652</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Generar clase Storm + .ui</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QComboBox {
+border: 1px solid #999999; 
+border-radius: 4px;
+padding: 3px 2px 2px 2px;
+min-width: 6em;
+}
+QComboBox::down-arrow {image: url(:newPrefix/arrow_down.png);height: 10px;}
+QComboBox:editable {background: white;border-radius: 0px;}
+QComboBox::drop-down { border-style: none}
+
+QLineEdit, QDoubleSpinBox, QTextEdit  { 
+border: 1px solid #999999; 
+padding: 2px 2px 2px 2px;
+min-width: 90px;
+height: 20px;
+
+border-top-left-radius: 3px ;
+border-top-right-radius: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-left-radius: 3px;
+}
+
+QLineEdit:focus, QDoubleSpinBox:focus, QTextEdit:focus{ border: 1px solid rgb(0, 188, 0);}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_6">
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_13">
-      <item>
-       <widget class="QCommandLinkButton" name="clbtLevantarClaseStorm">
-        <property name="toolTip">
-         <string>Leer informacion desde una clase existente y agregarla a los datos actuales.</string>
-        </property>
-        <property name="text">
-         <string>Levantar Clase Storm</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="Line" name="line_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_14">
       <item>
@@ -117,260 +108,308 @@
         <bold>true</bold>
        </font>
       </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(244, 244, 244);</string>
-      </property>
       <property name="title">
        <string>Agregar atributo</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="leftMargin">
+          <number>120</number>
+         </property>
+         <property name="rightMargin">
+          <number>120</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout">
-               <item>
-                <widget class="QLabel" name="label">
-                 <property name="text">
-                  <string>Nombre atributo</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="leNombre">
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_4">
-               <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>Widget</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="cbWidget">
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);</string>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>QLineEdit</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>QComboBox</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>QRadioButton</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>QSpinBox</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>QDateEdit</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="chkPrimario">
-               <property name="text">
-                <string>Primario?</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Nombre atributo</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
            </item>
            <item>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Storm Type</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QComboBox" name="cbStormType">
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);</string>
-                 </property>
-                 <property name="currentIndex">
-                  <number>11</number>
-                 </property>
-                 <property name="insertPolicy">
-                  <enum>QComboBox::InsertAlphabetically</enum>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>Bool</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Date</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>DateTime</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Decimal</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Float</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Int</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>List</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Pickle</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>RawStr</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Time</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>TimeDelta</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>Unicode</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>Valor por defecto</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="leValorPorDefecto">
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(255, 255, 255);</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="chkNotNull">
-               <property name="text">
-                <string>Not Null?</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QLineEdit" name="leNombre">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
          <item>
-          <widget class="QGroupBox" name="gbReferencia">
-           <property name="title">
-            <string>Referencia</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Widget</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbWidget">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>QLineEdit</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>QComboBox</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>QRadioButton</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>QSpinBox</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>QDateEdit</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Storm Type</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="cbStormType">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);</string>
+             </property>
+             <property name="currentIndex">
+              <number>11</number>
+             </property>
+             <property name="insertPolicy">
+              <enum>QComboBox::InsertAlphabetically</enum>
+             </property>
+             <item>
+              <property name="text">
+               <string>Bool</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Date</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>DateTime</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Decimal</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Float</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Int</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>List</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Pickle</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>RawStr</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Time</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>TimeDelta</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Unicode</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Valor por defecto</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="leValorPorDefecto">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 255, 255);</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QPushButton" name="btPrimario">
+             <property name="text">
+              <string>Primario?</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btNotNull">
+             <property name="text">
+              <string>Not Null?</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbReferencia">
+         <property name="title">
+          <string>Referencia</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <item>
-               <widget class="QLabel" name="label_5">
-                <property name="text">
-                 <string>Nombre clase</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QLineEdit" name="leNombreReferencia">
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(255, 255, 255);</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>Nombre clase</string>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QCheckBox" name="chkCruzada">
-              <property name="text">
-               <string>Cruzada?</string>
+             <widget class="QLineEdit" name="leNombreReferencia">
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 255, 255);</string>
               </property>
              </widget>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btAgregar">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>1666666</width>
-             <height>1666666</height>
-            </size>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QPushButton {
+          </item>
+          <item>
+           <widget class="QCheckBox" name="chkCruzada">
+            <property name="text">
+             <string>Cruzada?</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btAgregar">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>1666666</width>
+           <height>1666666</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
 	background: #DBDBDB;
 	border-radius: 3px;
 	color:#353535;
@@ -387,13 +426,11 @@ QPushButton:hover{
          background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                            stop: 0 #dadbde, stop: 1 #f6f7fa);
 }</string>
-           </property>
-           <property name="text">
-            <string>+ Agregar</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+         </property>
+         <property name="text">
+          <string>+ Agregar</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -412,26 +449,20 @@ QPushButton:hover{
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>true</bool>
         </attribute>
-        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-         <bool>false</bool>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>150</number>
         </attribute>
         <attribute name="horizontalHeaderStretchLastSection">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-         <bool>false</bool>
+         <bool>true</bool>
         </attribute>
         <attribute name="horizontalHeaderStretchLastSection">
-         <bool>false</bool>
+         <bool>true</bool>
         </attribute>
         <attribute name="horizontalHeaderCascadingSectionResizes">
          <bool>true</bool>
+        </attribute>
+        <attribute name="horizontalHeaderDefaultSectionSize">
+         <number>150</number>
         </attribute>
         <column>
          <property name="text">
@@ -509,31 +540,35 @@ QPushButton:hover{
      </widget>
     </item>
     <item>
-     <widget class="QCheckBox" name="chkGenerarClase">
-      <property name="text">
-       <string>Generar clase Storm.</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QCheckBox" name="chkGenerarUi">
-      <property name="text">
-       <string>Generar .ui para esta clase</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QCheckBox" name="chkGenerarPaquete">
-      <property name="text">
-       <string>Generar paquete para este objeto.</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_13">
+      <item>
+       <widget class="QCheckBox" name="chkGenerarClase">
+        <property name="text">
+         <string>Generar clase Storm.</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkGenerarUi">
+        <property name="text">
+         <string>Generar .ui para esta clase</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chkGenerarPaquete">
+        <property name="text">
+         <string>Generar paquete para este objeto.</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -580,6 +615,9 @@ QPushButton:hover{
       </item>
       <item>
        <widget class="QPushButton" name="btGenerar">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
 	color: rgb(255, 255, 255);
@@ -610,8 +648,6 @@ QPushButton:pressed{
   <tabstop>cbStormType</tabstop>
   <tabstop>cbWidget</tabstop>
   <tabstop>leValorPorDefecto</tabstop>
-  <tabstop>chkPrimario</tabstop>
-  <tabstop>chkNotNull</tabstop>
   <tabstop>gbReferencia</tabstop>
   <tabstop>leNombreReferencia</tabstop>
   <tabstop>chkCruzada</tabstop>
@@ -623,9 +659,10 @@ QPushButton:pressed{
   <tabstop>leUbicacion</tabstop>
   <tabstop>btGenerar</tabstop>
   <tabstop>btSalir</tabstop>
-  <tabstop>clbtLevantarClaseStorm</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="images_rc/images.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>btSalir</sender>
@@ -634,8 +671,8 @@ QPushButton:pressed{
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>630</x>
-     <y>618</y>
+     <x>540</x>
+     <y>657</y>
     </hint>
     <hint type="destinationlabel">
      <x>460</x>
@@ -650,8 +687,8 @@ QPushButton:pressed{
    <slot>click()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>236</x>
-     <y>152</y>
+     <x>520</x>
+     <y>97</y>
     </hint>
     <hint type="destinationlabel">
      <x>300</x>

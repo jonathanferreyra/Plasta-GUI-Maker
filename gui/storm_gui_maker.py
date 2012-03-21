@@ -35,7 +35,7 @@ class StormGuiMaker(QtGui.QMainWindow):
         uifile = os.path.join(os.path.abspath(os.path.dirname(__file__)),FILENAME)
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
-        self.setWindowState(QtCore.Qt.WindowMaximized)
+        #self.setWindowState(QtCore.Qt.WindowMaximized)
         self.padre = parent
         
         self.tablaAtributos = MyTableWidget(
@@ -45,7 +45,7 @@ class StormGuiMaker(QtGui.QMainWindow):
         )
             
         self.widgets = {}
-        self.atributos = {}
+        self.atributos = []
         
     def __centerOnScreen (self):
         '''Centers the window on the screen.'''
@@ -74,7 +74,12 @@ class StormGuiMaker(QtGui.QMainWindow):
         indice = self.tablaAtributos.getSelectedCurrentIndex()
         del self.atributos[ indice ]
         # vuelve a cargar la lista
-        self.tablaAtributos.addItems( [elemento[1:] for elemento in self.atributos] )
+        items = [
+        [dic['atributo'],dic['storm_type'],dic['widget'],dic['default'],
+        dic['primario'],dic['not_null'],dic['referencia'],dic['cruzada'] ] 
+            for dic in self.atributos.values()]
+        
+        self.tablaAtributos.addItems( items )
     
     @QtCore.pyqtSlot()
     def on_btExaminar_clicked(self):
@@ -100,14 +105,8 @@ class StormGuiMaker(QtGui.QMainWindow):
        self.leNombreReferencia.setText(
            unicode(self.leNombre.text().toUtf8(),'utf-8').capitalize())
     
-#    @QtCore.pyqtSlot()
-#    def on_chkGenerarPaquete_clicked(self):
-#        ruta = ''
-#        if self.chkGenerarPaquete.isChecked() :
-#            ruta = os.path.splitext( unicode(self.leUbicacion.text().toUtf8(),'utf-8') )[0]
-#        else:
-#            ruta = os.path.splitext( unicode(self.leUbicacion.text().toUtf8(),'utf-8') )[0] + unicode(self.leNombreClase.text().toUtf8(),'utf-8').lower()
-#        self.leUbicacion.setText( ruta )
+    def on_twLista_doubleClicked(self , index):
+        datos = self.tablaAtributos.getRowString()        
     
 ########################################################################
     
@@ -146,10 +145,11 @@ class StormGuiMaker(QtGui.QMainWindow):
             logSC.generarClase(
                 destino,
                 nombre_clase,
-                self.atributos,
+                self.convertirListaAtributosADiccionarioAtributos( self.atributos ),
                 package = self.chkGenerarPaquete.isChecked())
         
         if self.chkGenerarUi.isChecked() :
+            destino = destino[:-3] + '.ui' 
             gui_maker.generarUI(
                 destino,
                 self.widgets,
@@ -157,15 +157,15 @@ class StormGuiMaker(QtGui.QMainWindow):
                 botones = {'bt_salir_guardar':True})
         QtGui.QMessageBox.information(self, "Generar clase Storm + .ui",u"Generación realizada con éxito")
         
-    
     def agregarALista(self):        
         elemento = self.getTextWidgets(
             self.leNombre,
             self.cbStormType,
             self.cbWidget,
-            self.leValorPorDefecto,
-            self.chkPrimario,
-            self.chkNotNull)
+            self.leValorPorDefecto)
+        elemento += ['True'] if self.btPrimario.isChecked() else ['False']
+        elemento += ['True'] if self.btNotNull.isChecked() else ['False']
+        
         if self.gbReferencia.isChecked() :
             referencia = self.getTextWidgets(
             self.leNombreReferencia,
@@ -173,20 +173,15 @@ class StormGuiMaker(QtGui.QMainWindow):
             elemento += referencia
         else:
             elemento += ['','']
-            
-        un_atributo = self.convertToDict(
-            ["atributo","storm_type","widget","default","primario","not_null","referencia","cruzada"],
-            elemento
-        )
-        # agrega un atributo para generarse 
-        self.atributos[ len(self.atributos) ] = un_atributo
         
+        self.atributos.append( elemento )
         # agrega una fila a la tabla 
         self.tablaAtributos.appendItem( elemento )
         
         self.reestablecerCampos()
         
-        self.agregarWidget(un_atributo['atributo'], un_atributo['widget'], un_atributo['referencia'])
+        # atributo - widget - referencia
+        self.agregarWidget(elemento[0], elemento[2], elemento[6])
         
     def agregarWidget(self, atributo, widget_tipo, referencia):
         self.widgets[ len(self.widgets) ] = {
@@ -195,6 +190,17 @@ class StormGuiMaker(QtGui.QMainWindow):
         'reference':referencia
         }
         
+    def convertirListaAtributosADiccionarioAtributos(self, atributos):
+        resultado = {}
+        for atributo in atributos:
+            un_atributo = self.convertToDict(
+                ["atributo","storm_type","widget","default","primario","not_null","referencia","cruzada"],
+                atributo
+            )
+            # agrega un atributo para generarse 
+            resultado[ len(resultado) ] = un_atributo
+        return resultado
+            
     def cargarWidgets(self,datos, widgets):
         import PyQt4        
         
@@ -273,8 +279,6 @@ class StormGuiMaker(QtGui.QMainWindow):
              "Unicode",
              "QLineEdit",
              "",
-             "False",
-             "False",
              "",
              "False"
             ],
@@ -283,12 +287,12 @@ class StormGuiMaker(QtGui.QMainWindow):
              self.cbStormType,
              self.cbWidget,
              self.leValorPorDefecto,
-             self.chkPrimario,
-             self.chkNotNull,
              self.leNombreReferencia,
              self.chkCruzada
              ]
         )
+        self.btPrimario.setChecked(False)
+        self.btNotNull.setChecked(False)
         self.gbReferencia.setChecked(False)
         
     def obtenerClaseDesdeArchivo(self, module_name, class_name):
