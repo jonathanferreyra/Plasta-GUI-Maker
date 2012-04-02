@@ -17,7 +17,7 @@
 #       MA 02110-1301, USA.
 
 import methods
-from api import pathtools
+from maker import pathtools
 
 #############################################################################################
 class LogicMethods():
