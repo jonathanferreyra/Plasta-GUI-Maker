@@ -28,7 +28,7 @@ from PyQt4.Qsci import QsciScintilla, QsciLexerPython
 
 from logic_generar_senales import LogicaGenerarSenales
 from mytablewidget import MyTableWidget
-from api.logic_methods import LogicMethods
+from maker.logic_methods import LogicMethods
 from TreeView import TreeView
 import pathtools
 
@@ -59,8 +59,8 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         self.qscArchivo.setLexer(lexer)        
         self.__setScintillaProperties(self.qscArchivo)
 
-        self.logica.loadRecentFilesInCombo( self.cbArchivos )
-        self.cargarPlantilla()
+#        self.logica.loadRecentFilesInCombo( self.cbArchivos )
+#        self.cargarPlantilla()
         self.cargarListaMetodos()
         
     def __centerOnScreen (self):
@@ -150,14 +150,10 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         editor.setCaretLineBackgroundColor(QtGui.QColor("#F5F5DC"))
     
     def abrirArchivoUI(self):
-        dialog = QtGui.QFileDialog(None, 'Abrir archivo UI')
-        dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-        dialog.setAcceptMode(QtGui.QFileDialog.AcceptOpen)
-        dialog.setDefaultSuffix('ui')
-        dialog.setNameFilter('Archivo UI (*.ui)')
-        
-        if dialog.exec_():
-            filename = dialog.selectedFiles()[0] # convierte a unicode el string
+        files = QtGui.QFileDialog.getOpenFileNames(None,'Abrir archivo UI','/home',filter = '*.ui')
+
+        if files:
+            filename = files[0] # convierte a unicode el string
             filename = unicode(filename, 'utf-8') #
             return filename
         else : None

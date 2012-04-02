@@ -19,7 +19,7 @@
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #       MA 02110-1301, USA.
 
-from api.logic_signals import LogicSignals
+from maker.logic_signals import LogicSignals
 import os
 from PyQt4 import QtCore, QtGui
  
@@ -43,22 +43,15 @@ class LogicaGenerarSenales():
 
     def abrirArchivoPython(self):
         u""" Muestra un cuadro de dialogo desde donde seleccionar un archivo. """
-        dialog = QtGui.QFileDialog(None, 'Abrir archivo Python')
-        dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-        dialog.setAcceptMode(QtGui.QFileDialog.AcceptOpen)
-        dialog.setDefaultSuffix('py')
-        dialog.setNameFilter('Archivo fuente Python (*.py)')
         
-        if dialog.exec_():
-            filename = dialog.selectedFiles()[0] # convierte a unicode el string
-            filename = unicode(filename, 'utf-8') # 
+        files = QtGui.QFileDialog.getOpenFileNames(None,'Abrir archivo Python','/home',filter = '*.py')
             
-            if filename: 
-                fname = open(filename)
-                data = fname.read()
-                return data
-            else:
-                return ''  
+        if files: 
+            fname = open(files[0])
+            data = fname.read()
+            return data
+        else:
+            return ''  
     
     def getWidgetsFromUI(self, ruta):        
         if ruta:             
@@ -77,25 +70,22 @@ class LogicaGenerarSenales():
         return LS.generarCodigoFuenteSenales( self.seniales )
         
     def guardarArchivo(self):
-        dialog = QtGui.QFileDialog(None, 'Guardar')
-        dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-        dialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)
-        dialog.setDefaultSuffix("py")
-        dialog.setFilters(['Arhivo Fuente Python'])
-        filename = ''
-        if dialog.exec_():
-            filename = dialog.selectedFiles()[0]
-        return filename
+        filename = QtGui.QFileDialog.getSaveFileName(
+                    self,
+                    'Arhivo Fuente Python',
+                    "/home",
+                    filter = '*.py')            
+        return filename[0]
         
     def guardarSenalesGeneradas(self, editor) : 
-        dialog = QtGui.QFileDialog(None, 'Guardar')
-        dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-        dialog.setAcceptMode(QtGui.QFileDialog.AcceptSave)
-        dialog.setDefaultSuffix("py")
-        dialog.setFilters(['Arhivo Fuente Python'])
+        fileName = QtGui.QFileDialog.getSaveFileName(
+                            None,
+                            "Guardar",
+                            "/home",
+                            filter = '*.py')
         
-        if dialog.exec_():
-            filename = dialog.selectedFiles()[0]
+        if fileName:
+            filename = fileName[0]
             archivo = open(filename, 'w')
             contenido = unicode(editor.text().toUtf8(),'utf-8')
             archivo.write(contenido)

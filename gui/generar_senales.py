@@ -54,7 +54,7 @@ class GenerarSenalesPy(QtGui.QMainWindow):
         self.cliptboard = cliptboard
         self.nombre_widget = ''
                 
-        self.logica.loadRecentFilesInCombo( self.cbArchivos )
+#        self.logica.loadRecentFilesInCombo( self.cbArchivos )
 
     def __centerOnScreen (self):
         '''Centers the window on the screen.'''
@@ -148,14 +148,10 @@ class GenerarSenalesPy(QtGui.QMainWindow):
         editor.setCaretLineBackgroundColor(QtGui.QColor("#F5F5DC"))
     
     def abrirArchivoUI(self):
-        dialog = QtGui.QFileDialog(None, 'Abrir archivo UI')
-        dialog.setFileMode(QtGui.QFileDialog.AnyFile)
-        dialog.setAcceptMode(QtGui.QFileDialog.AcceptOpen)
-        dialog.setDefaultSuffix('ui')
-        dialog.setNameFilter('Archivo UI (*.ui)')
-        
-        if dialog.exec_():
-            filename = dialog.selectedFiles()[0] # convierte a unicode el string
+        files = QtGui.QFileDialog.getOpenFileNames(None,'Abrir archivo UI','/home',filter = '*.ui')
+
+        if files:
+            filename = files[0] # convierte a unicode el string
             filename = unicode(filename, 'utf-8') #
             return filename
         else : None

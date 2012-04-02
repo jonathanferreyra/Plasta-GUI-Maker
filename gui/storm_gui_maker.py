@@ -19,8 +19,8 @@
 import os,sys
 from PyQt4 import QtCore, QtGui, uic
 from mytablewidget import MyTableWidget
-from api import gui_maker
-from api.logic_storm_class import LogicStormClass
+from maker import gui_maker
+from maker.logic_storm_class import LogicStormClass
 
 
 #TODO: autosugerir el nombre de la clase al nombre del archivo para guardar
