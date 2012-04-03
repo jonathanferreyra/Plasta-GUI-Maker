@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>273</height>
+    <width>902</width>
+    <height>280</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -111,6 +111,12 @@ QPushButton:hover{
         <property name="text">
          <string/>
         </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
      </layout>
@@ -181,6 +187,19 @@ QPushButton:hover{
         </property>
         <property name="text">
          <string>Generar clase Storm + .ui</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btGenerarPaquetePlasta">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Generar paquete Plasta</string>
         </property>
        </widget>
       </item>
