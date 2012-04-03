@@ -7,10 +7,9 @@ import os,sys
 from PyQt4 import QtCore, QtGui, uic
 from gui.mytablewidget import MyTableWidget 
 from gui import pathtools
-from maker import gui_maker_simple as gui_maker
+from maker import add_maker_simple as gui_maker
 
 class GuiMaker(QtGui.QMainWindow):
-    """La ventana principal de la aplicación."""
     
     def __init__(self, parent = None):
         FILENAME = 'guimaker.ui'
@@ -44,8 +43,14 @@ class GuiMaker(QtGui.QMainWindow):
         if self.leSalida.text() == '' :
             QtGui.QMessageBox.warning(self, "Qt Gui Maker","No se ha seleccionado un destino para el archivo de salida.")
         else:
-            if len(self.__widgets) != 0 :                
-                self.__generarUI()
+            if len(self.__widgets) != 0 :  
+                
+                widgets_a_generar = self.obtenerWidgetsAGenerer()
+                opts, btns = self.getOpcionesGeneracion()  
+                destino = self.__toUnicode(self.leSalida.text())
+                      
+                if self.generarUI( destino, widgets_a_generar, opts, btns) :
+                    QtGui.QMessageBox.information(self, "Qt Gui Maker",u"Generación realizada con éxito.")
             else:
                 QtGui.QMessageBox.warning(self, "Qt Gui Maker","No hay widgets para generar.")            
     
@@ -64,7 +69,6 @@ class GuiMaker(QtGui.QMainWindow):
     @QtCore.pyqtSlot()
     def on_btArriba_clicked(self):
         indice = self.lwWidgets.getSelectedCurrentIndex()
-        print indice
         if indice > 0 :
             valor_up = self.__widgets[indice]
             valor_down = self.__widgets[indice - 1]
@@ -160,32 +164,28 @@ class GuiMaker(QtGui.QMainWindow):
                                    
                 self.gui.showSeleccionarCampos(self,filename)                                        
                 
-    def __generarUI(self):
+    def generarUI(self, destino, widgets_a_generar, opts, btns):
         """
         """        
-        widgets_a_generar = {}
-        
-        for widget in self.__widgets :
-            widgets_a_generar[widget[0]] = {widget[1]:widget[2]}
-            
-        print widgets_a_generar
-                                
-        opts, btns = self.getOpcionesGeneracion()  
-        gui_maker.generarUI(
-            self.__toUnicode(self.leSalida.text()),
+        print destino, widgets_a_generar, opts, btns
+        return gui_maker.generarUI(
+            destino,
             widgets_a_generar,
             botones = btns,
             opciones = opts)
         
-        QtGui.QMessageBox.information(self, "Qt Gui Maker",u"Generación realizada con éxito.")
+    def obtenerWidgetsAGenerer(self):
+        widgets_a_generar = {}
+        for widget in self.__widgets :
+            widgets_a_generar[widget[0]] = {widget[1]:widget[2]}
+        return widgets_a_generar
             
     def __toUnicode(self,myQstring):
         u""" Convierte a UTF8 el objeto QString recibido. """
-        #~ print myQstring
         return unicode(myQstring.toUtf8(),'utf-8')
         
     def cargarCamposDesdeBD(self, datos) : 
-        # carga en al lsita lso datos recibidos desde el dialogo
+        # carga en al lista lso datos recibidos desde el dialogo
         self.lwWidgets.addItems(datos)
         
         for item in datos :
@@ -221,10 +221,7 @@ class GuiMaker(QtGui.QMainWindow):
         """ """
         
         self.__opcionesGeneracion['generar_plantilla'] = self.chkGenerarPlantilla.isChecked()
-        
         # botones
-        
-        
         self.__botones['bt_salir_aceptar'] = self.rbBtnsSA.isChecked()
         self.__botones['bt_salir_guardar'] = self.rbBtnsSG.isChecked()
         self.__botones['bt_cancelar_aceptar'] = self.rbBtnsCA.isChecked()
