@@ -114,9 +114,6 @@ padding:6px;
            <property name="text">
             <string>Generar plantilla .py</string>
            </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
           </widget>
          </item>
          <item>
@@ -156,9 +153,6 @@ padding:6px;
              <property name="text">
               <string>QMainWindow</string>
              </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -167,7 +161,7 @@ padding:6px;
               <string>QDialog</string>
              </property>
              <property name="checked">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -211,7 +205,7 @@ padding:6px;
               <string>Salir - Aceptar</string>
              </property>
              <property name="checked">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -219,6 +213,9 @@ padding:6px;
             <widget class="QRadioButton" name="rbBtnsSG">
              <property name="text">
               <string>Salir - Guardar</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -258,8 +255,8 @@ padding:6px;
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>276</width>
-          <height>309</height>
+          <width>274</width>
+          <height>533</height>
          </rect>
         </property>
         <attribute name="label">
@@ -473,8 +470,8 @@ padding:6px;
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>268</width>
-          <height>290</height>
+          <width>262</width>
+          <height>533</height>
          </rect>
         </property>
         <attribute name="label">
