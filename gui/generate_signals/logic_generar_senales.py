@@ -71,11 +71,11 @@ class LogicaGenerarSenales():
         
     def guardarArchivo(self):
         filename = QtGui.QFileDialog.getSaveFileName(
-                    self,
+                    None,
                     'Arhivo Fuente Python',
                     "/home",
-                    filter = '*.py')            
-        return filename[0]
+                    filter = '*.py')           
+        return unicode(filename,'utf-8') + '.py'
         
     def guardarSenalesGeneradas(self, editor) : 
         fileName = QtGui.QFileDialog.getSaveFileName(

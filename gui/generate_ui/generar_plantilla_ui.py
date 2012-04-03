@@ -23,14 +23,14 @@
 
 import os,sys
 from PyQt4 import QtCore, QtGui, uic
-from images import qtgui_art
+from gui.images import qtgui_art
 from PyQt4.Qsci import QsciScintilla, QsciLexerPython
 
-from logic_generar_senales import LogicaGenerarSenales
-from mytablewidget import MyTableWidget
+from gui.generate_signals.logic_generar_senales import LogicaGenerarSenales
+from gui.mytablewidget import MyTableWidget
 from maker.logic_methods import LogicMethods
-from TreeView import TreeView
-import pathtools
+from gui.TreeView import TreeView
+from gui import pathtools
 
 class GenerarPlantillaUI(QtGui.QMainWindow):
 
@@ -79,10 +79,10 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         self.path_ui = self.abrirArchivoUI()
         if self.path_ui != None :
             widgets = self.logica.getWidgetsFromUI( self.path_ui )
-            self.logica.saveRecentFile( self.path_ui )
+#            self.logica.saveRecentFile( self.path_ui )
             self.arbolWidgets.insertarEnArbol( widgets )
             self.nombre_ui = self.getFileName( self.path_ui )
-        self.logica.loadRecentFilesInCombo( self.cbArchivos )
+#        self.logica.loadRecentFilesInCombo( self.cbArchivos )
         
     @QtCore.pyqtSlot(QtCore.QString)
     def on_cbArchivos_currentIndexChanged(self , index):

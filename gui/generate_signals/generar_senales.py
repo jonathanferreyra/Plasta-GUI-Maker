@@ -23,13 +23,13 @@
 
 import os,sys
 from PyQt4 import QtCore, QtGui, uic
-from images import qtgui_art
+from gui.images import qtgui_art
 from PyQt4.Qsci import QsciScintilla, QsciLexerPython
 
 from logic_generar_senales import LogicaGenerarSenales
-from mytablewidget import MyTableWidget
+from gui.mytablewidget import MyTableWidget
 
-from TreeView import TreeView
+from gui.TreeView import TreeView
 
 class GenerarSenalesPy(QtGui.QMainWindow):
 
@@ -72,9 +72,9 @@ class GenerarSenalesPy(QtGui.QMainWindow):
         path = self.abrirArchivoUI()
         if path != None :
             widgets = self.logica.getWidgetsFromUI( path )
-            self.logica.saveRecentFile( path )
+            #self.logica.saveRecentFile( path )
             self.arbolWidgets.insertarEnArbol( widgets )
-        self.logica.loadRecentFilesInCombo( self.cbArchivos )
+        #self.logica.loadRecentFilesInCombo( self.cbArchivos )
 
     @QtCore.pyqtSlot(QtCore.QString)
     def on_cbArchivos_currentIndexChanged(self , index):

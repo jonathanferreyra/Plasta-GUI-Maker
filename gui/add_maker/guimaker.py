@@ -5,9 +5,9 @@
 import os,sys
 # Importamos los módulos de Qt
 from PyQt4 import QtCore, QtGui, uic
-from mytablewidget import MyTableWidget 
-import pathtools
-from maker import gui_maker
+from gui.mytablewidget import MyTableWidget 
+from gui import pathtools
+from maker import gui_maker_simple as gui_maker
 
 class GuiMaker(QtGui.QMainWindow):
     """La ventana principal de la aplicación."""
