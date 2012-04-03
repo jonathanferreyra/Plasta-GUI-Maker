@@ -18,8 +18,8 @@
 
 import os,sys
 from PyQt4 import QtCore, QtGui, uic
-from mytablewidget import MyTableWidget
-from maker import gui_maker
+from gui.mytablewidget import MyTableWidget
+from maker import gui_maker_storm as gui_maker
 from maker.logic_storm_class import LogicStormClass
 
 
