@@ -6,7 +6,7 @@ import os,sys
 from PyQt4 import QtGui
 
 from mainform import MainForm
-from guimaker import GuiMaker
+from add_maker.guimaker import GuiMaker
 from senales import Senales
 
 class GUI(QtGui.QMainWindow):

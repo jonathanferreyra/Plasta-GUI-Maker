@@ -89,7 +89,7 @@ class LogicMethods():
         
     def aplicarIdentacion(self, texto):
         lineas = texto.split('\n')
-        lineas = map(lambda linea : '    ' + linea, lineas)
+        lineas = map(lambda linea : (' ' * 4) + linea, lineas)
         return '\n'.join(lineas)
         
 if __name__ == "__main__":

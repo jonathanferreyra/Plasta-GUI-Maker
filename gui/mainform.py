@@ -33,6 +33,14 @@ class MainForm(QtGui.QMainWindow):
         self.__centerOnScreen()
         
         self.gui = parent
+        #self.hover = QtGui.QHoverEvent( QtCore.QEvent.HoverEnter )
+        #self.connect(self.hover, QtCore.SIGNAL('registerEventType ()'),self.on_btUINuevo_registerEventType)
+        
+        #self.connect(self.btUINuevo, QtCore.SIGNAL('enterEvent ()'),self.mouse_enterEvent)
+        self.btUINuevo.installEventFilter(self)
+        self.btSenalesPy.installEventFilter(self)
+        self.btGenerarPlantilla.installEventFilter(self)
+        self.btGenerarStormUi.installEventFilter(self)
         
     def __centerOnScreen (self):
         '''Centers the window on the screen.'''
@@ -42,28 +50,45 @@ class MainForm(QtGui.QMainWindow):
     
     @QtCore.pyqtSlot()
     def on_btSenalesPy_clicked(self):
-        from generar_senales import GenerarSenalesPy
+        from generate_signals.generar_senales import GenerarSenalesPy
         self.senales = GenerarSenalesPy(cliptboard = self.gui.cliptboard)
         self.senales.show()
     
     @QtCore.pyqtSlot()
     def on_btUINuevo_clicked(self):
-        from guimaker import GuiMaker
+        from add_maker.guimaker import GuiMaker
         self.gm = GuiMaker(self.gui)
         self.gm.show()
           
     @QtCore.pyqtSlot()
     def on_btGenerarPlantilla_clicked(self):
-        from generar_plantilla_ui import GenerarPlantillaUI
+        from generate_ui.generar_plantilla_ui import GenerarPlantillaUI
         self.gpui = GenerarPlantillaUI(self.gui)
         self.gpui.show()
         
     @QtCore.pyqtSlot()
     def on_btGenerarStormUi_clicked(self):
-        from storm_gui_maker import StormGuiMaker
+        from storm_maker.storm_gui_maker import StormGuiMaker
         self.sgm = StormGuiMaker(self.gui)
         self.sgm.show()
         
+    def eventFilter(self, widget, event):        
+        if (type(widget) is  QtGui.QPushButton) and (type(event) is QtGui.QHoverEvent) :            
+            if widget is self.btUINuevo :
+                self.lbDescripcion.setText(
+                    u'Crear una pantalla tipo <alta de un registro>.')
+            elif widget is self.btSenalesPy :
+                self.lbDescripcion.setText(
+                    u'Generar el codigo fuente para los widgets y las señales indicadas.')
+            elif widget is self.btGenerarPlantilla :
+                self.lbDescripcion.setText(
+                    u'Generar la clase para controlar el archivo .ui seleccionado.')
+            elif widget is self.btGenerarStormUi :
+                self.lbDescripcion.setText(
+                    u'Generar clase Storm para un objeto.')
+            return 0
+        else:            
+            return QtGui.QMainWindow.eventFilter(self, widget, event)
 def main():
     app = QtGui.QApplication(sys.argv)
     window = MainForm()
