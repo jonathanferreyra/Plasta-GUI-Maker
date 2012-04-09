@@ -33,10 +33,10 @@ class GUI(QtGui.QMainWindow):
         self.senales.show() 
         
     def showGenerarPlantillaUI(self, parent = None):
-		from generar_plantilla_ui import GenerarPlantillaUI
-		self.gpui = GenerarPlantillaUI(parent)
-		self.gpui.show()
-        		
+        from generar_plantilla_ui import GenerarPlantillaUI
+        self.gpui = GenerarPlantillaUI(parent)
+        self.gpui.show()
+           
 def main():
     #~ app = QtGui.QApplication(sys.argv)
     gui = GUI()
