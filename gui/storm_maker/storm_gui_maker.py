@@ -19,7 +19,7 @@
 import os,sys
 from PyQt4 import QtCore, QtGui, uic
 from gui.mytablewidget import MyTableWidget
-from maker import gui_maker_storm as gui_maker
+from maker import add_maker_storm as gui_maker
 from maker.logic_storm_class import LogicStormClass
 
 
@@ -36,6 +36,7 @@ class StormGuiMaker(QtGui.QMainWindow):
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
         #self.setWindowState(QtCore.Qt.WindowMaximized)
+        QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self, self.close)
         self.padre = parent
         
         self.tablaAtributos = MyTableWidget(

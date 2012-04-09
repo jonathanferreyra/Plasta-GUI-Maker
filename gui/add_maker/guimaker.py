@@ -19,7 +19,7 @@ class GuiMaker(QtGui.QMainWindow):
         uic.loadUi(uifile, self)
         self.__center()
         self.setWindowState(QtCore.Qt.WindowMaximized)
-        
+        QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self, self.close)
         self.gui = parent
         self.lwWidgets = MyTableWidget(self.lstWidgets,['Nombre','Widget'])
         #~ self.lwCamposBD = MyTableWidget(self.lstCamposBD,['Campo','Tipo'],False)

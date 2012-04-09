@@ -31,7 +31,7 @@ class MainForm(QtGui.QMainWindow):
         uifile = os.path.join(os.path.abspath(os.path.dirname(__file__)),FILENAME)
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
-        
+        QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self, self.close)
         self.gui = parent
         #self.hover = QtGui.QHoverEvent( QtCore.QEvent.HoverEnter )
         #self.connect(self.hover, QtCore.SIGNAL('registerEventType ()'),self.on_btUINuevo_registerEventType)
@@ -72,6 +72,12 @@ class MainForm(QtGui.QMainWindow):
         self.sgm = StormGuiMaker(self.gui)
         self.sgm.show()
         
+    @QtCore.pyqtSlot()
+    def on_btGenerarPaquetePlasta_clicked(self):
+        from crear_paquete_plasta.crear_paquete_plasta import CrearPaquetePlasta
+        self.cpp = CrearPaquetePlasta()
+        self.cpp.show()
+    
     def eventFilter(self, widget, event):        
         if (type(widget) is  QtGui.QPushButton) and (type(event) is QtGui.QHoverEvent) :            
             if widget is self.btUINuevo :

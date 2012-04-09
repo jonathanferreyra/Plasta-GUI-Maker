@@ -40,7 +40,7 @@ class GenerarSenalesPy(QtGui.QMainWindow):
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
         self.setWindowState(QtCore.Qt.WindowMaximized)
-
+        QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self, self.close)
         lexer = QsciLexerPython()
         self.qscArchivo.setLexer(lexer)
         self.qscSignals.setLexer(lexer)

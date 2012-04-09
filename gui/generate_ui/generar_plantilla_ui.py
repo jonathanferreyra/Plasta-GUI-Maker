@@ -41,7 +41,7 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
         self.setWindowState(QtCore.Qt.WindowMaximized)        
-        
+        QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self, self.close)
         # atrubutos e instancias
         self.logica = LogicaGenerarSenales()
         self.lm = LogicMethods()
