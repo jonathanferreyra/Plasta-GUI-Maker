@@ -461,6 +461,13 @@ QLine = {
     }
 }
 
+QDoubleSpinBox = {
+'inherits':'QAbstractSpinBox',
+'signals':{
+    'valueChanged (double)':'float|value',
+    'valueChanged (const QString&)':'QString|value',
+    }
+}
 
 #~ = {
 #~ 'inherits':'',
@@ -487,6 +494,7 @@ Widgets = {
 'QDialog':QDialog,
 'QDialogButtonBox':QDialogButtonBox,
 'QDockWidget':QDockWidget,
+'QDoubleSpinBox':QDoubleSpinBox,
 'QFontComboBox':QFontComboBox,
 'QFrame':QFrame,
 'QGraphicsView':QGraphicsView,

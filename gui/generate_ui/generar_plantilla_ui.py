@@ -40,7 +40,7 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         uifile = os.path.join(os.path.abspath(os.path.dirname(__file__)),FILENAME)
         uic.loadUi(uifile, self)
         self.__centerOnScreen()
-        self.setWindowState(QtCore.Qt.WindowMaximized)        
+        self.setWindowState(QtCore.Qt.WindowMaximized)
         QtGui.QShortcut(QtGui.QKeySequence(QtCore.Qt.Key_Escape), self, self.close)
         # atrubutos e instancias
         self.logica = LogicaGenerarSenales()
@@ -50,25 +50,26 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         self.nombre_clase = ''
         self.nombre_widget = ''
         self.path_ui = ''
-        
-        self.arbolWidgets = TreeView(self.treeWidgets,self.on_arbolWidgets_selectedItem,self.connect)        
+
+        self.arbolWidgets = TreeView(self.treeWidgets,self.on_arbolWidgets_selectedItem,self.connect)
         self.tablaMetodos = MyTableWidget(self.twMetodos,['Metodo'])
-        
+
         # llamada a metodos
         lexer = QsciLexerPython()
-        self.qscArchivo.setLexer(lexer)        
+        self.qscArchivo.setLexer(lexer)
         self.__setScintillaProperties(self.qscArchivo)
 
-#        self.logica.loadRecentFilesInCombo( self.cbArchivos )
-#        self.cargarPlantilla()
-        self.cargarListaMetodos()
-        
+        #self.logica.loadRecentFilesInCombo( self.cbArchivos )
+        #self.cargarPlantilla()
+        #self.cargarListaMetodos()
+        self.setWindowTitle("Generar plantilla para un .ui")
+
     def __centerOnScreen (self):
         '''Centers the window on the screen.'''
         resolution = QtGui.QDesktopWidget().screenGeometry()
         self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
                   (resolution.height() / 2) - (self.frameSize().height() / 2))
-        
+
     @QtCore.pyqtSlot()
     def on_btAbrirPy_clicked(self):
         self.qscArchivo.setText(
@@ -83,7 +84,7 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
             self.arbolWidgets.insertarEnArbol( widgets )
             self.nombre_ui = self.getFileName( self.path_ui )
 #        self.logica.loadRecentFilesInCombo( self.cbArchivos )
-        
+
     @QtCore.pyqtSlot(QtCore.QString)
     def on_cbArchivos_currentIndexChanged(self , index):
         self.path_ui = unicode(self.cbArchivos.itemText(
@@ -91,34 +92,34 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         widgets = self.logica.getWidgetsFromUI( self.path_ui )
         self.arbolWidgets.insertarEnArbol( widgets )
         self.nombre_ui = self.getFileName( self.path_ui )
-        
+
     def on_twWidgets_currentItemChanged(self, itema,itemb):
         self.logica.cargarSenalesWidget( self.twWidgets, self.lwSenales )
 
     @QtCore.pyqtSlot()
-    def on_btAgregarSenial_clicked(self):        
+    def on_btAgregarSenial_clicked(self):
         widget, signal = self.logica.obtenerDatosSenalAGenerar(self.lwSenales)
-        self.logica.agregarSenial(widget, self.nombre_widget ,signal)                
+        self.logica.agregarSenial(widget, self.nombre_widget ,signal)
         metodo = 'on_%s_%s' % (self.nombre_widget, signal)
         self.lwMetodos.addItem( metodo )
-        
+
     @QtCore.pyqtSlot()
     def on_btQuitarMetodo_clicked(self):
         pass
-    
+
     @QtCore.pyqtSlot()
     def on_btSubir_clicked(self):
         pass
-    
+
     @QtCore.pyqtSlot()
     def on_btBajar_clicked(self):
         pass
-    
+
     @QtCore.pyqtSlot()
     def on_btExaminar_clicked(self):
         self.generar_en = self.logica.guardarArchivo()
         self.leUbicacion.setText(self.generar_en)
-        
+
     @QtCore.pyqtSlot()
     def on_btGenerarPlantilla_clicked(self):
         valido = True
@@ -128,7 +129,7 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         if self.leUbicacion.text().isEmpty() :
             self.leUbicacion.setStyleSheet('background-color: rgb(255, 107, 107);')
             valido = False
-        
+
         if valido :
             self.generarPlantilla()
 
@@ -139,16 +140,16 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
         if itema.parent().row() != -1:
             self.tipo_widget =  unicode(itema.parent().data().toString().toUtf8(),'utf-8')
             self.nombre_widget =  unicode(itema.data().toString().toUtf8(),'utf-8')
-        
+
             self.logica.cargarSenalesWidget( self.tipo_widget, self.lwSenales )
-        
-    
+
+
     def __setScintillaProperties(self, editor) :
         editor.setMarginsForegroundColor(QtGui.QColor("#1A1A1A"))
         editor.setFolding(QsciScintilla.BoxedTreeFoldStyle)
         editor.setCaretLineVisible(True)
         editor.setCaretLineBackgroundColor(QtGui.QColor("#F5F5DC"))
-    
+
     def abrirArchivoUI(self):
         files = QtGui.QFileDialog.getOpenFileNames(None,'Abrir archivo UI','/home',filter = '*.ui')
 
@@ -157,24 +158,24 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
             filename = unicode(filename, 'utf-8') #
             return filename
         else : None
-        
+
     def cargarPlantilla(self):
-        path = pathtools.getPathProgramFolder() + 'api/plantilla_clase.py'
+        path = pathtools.getPathProgramFolder() + 'plantillas/plantilla_clase.py'
         plantilla = open(path,'r')
         self.qscArchivo.setText(
             plantilla.read())
         plantilla.close()
-        
+
     def getFileName(self, path):
         import os.path
         return os.path.splitext(
             os.path.split(path)[1])[0]
-        
+
     def cargarListaMetodos(self):
         metodos = self.lm.getListOfMethods()
         metodos = map(lambda item : (item,), metodos)
         self.tablaMetodos.addItems( metodos )
-        
+
     def obtenerMetodosAuxiliares(self):
         items = self.tablaMetodos.getAllItems()
         # obtengo los que estan checkeados
@@ -183,25 +184,25 @@ class GenerarPlantillaUI(QtGui.QMainWindow):
             if item[0] is True :
                 metodos.append(item[1])
         return metodos
-        
+
     def obtenerTipoVentana(self, path_ui):
         contenido = open(path_ui,'r').read()
         if contenido.find('QMainWindow') != -1 :
             return 'QMainWindow'
         else:
             return 'QDialog'
-            
+
     def generarPlantilla(self):
-        self.nombre_clase = unicode(self.leNombreClase.text().toUtf8(),'utf-8')        
+        self.nombre_clase = unicode(self.leNombreClase.text().toUtf8(),'utf-8')
         self.lm.generaPlantillaClaseUI(
             self.generar_en,
             self.nombre_ui,
             self.obtenerTipoVentana(self.path_ui),
             self.nombre_clase,
             self.obtenerMetodosAuxiliares(),
-            self.logica.generarCodigoFuenteSenales())        
+            self.logica.generarCodigoFuenteSenales())
         QtGui.QMessageBox.information(self, "Generar plantilla","Plantilla generada correctamente.")
-        
+
 def main():
     app = QtGui.QApplication(sys.argv)
     window = GenerarPlantillaUI()

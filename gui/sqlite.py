@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 #       Copyright 2011 Ferreyra, Jonathan <jalejandroferreyra@gmail.com>
+#       Copyright 2011 Fernandez, Emiliano <emilianohfernandez@gmail.com>
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -94,10 +95,10 @@ class sqlite :
     def ejecutarVista (self, nombreVista) :
         """ Ejecuta la vista indicada. """
         return self.realizarConsulta("SELECT * FROM %s" %nombreVista)
-        
+
     def existeTabla(self, nombreTabla):
         """ """
-        
+
         existe = False
         self.__cursor.execute('Select tbl_name From MAIN.[sqlite_master] where type = "table"')
         # recorre las tablas devueltas para verificar que exista la tabla 'snippet'
@@ -106,7 +107,7 @@ class sqlite :
             if fila[0] == nombreTabla :
                 existe = True
         return existe
-                
+
     def getCantColumnasTabla(self, tabla):
         """ Obtiena la cantidad de Columnas de la tabla."""
         return len(self.getColumnasTabla(tabla))
@@ -160,19 +161,19 @@ class sqlite :
         # cantidad de datos que se obtendra
         longitud_parte = 500
         a_obtener = longitud_parte * parte
-        # consulta que se ejecutara para obtener la cantidad de 
+        # consulta que se ejecutara para obtener la cantidad de
         # registros que devuleva la consulta
         consulta_contar = 'SELECT COUNT(*) FROM ' + tabla + ' WHERE ' + condiciones
         # ejecuta la consulta
         cantidad_registros = int(self.realizarConsulta(consulta_contar)[0][0])
-        
+
         if campos :
             consulta = "SELECT %s FROM %s WHERE %s LIMIT %s" % (campos,tabla,condiciones,a_obtener)
-            #~ consulta = "SELECT %s FROM %s WHERE %s " % (campos,tabla,condiciones)            
+            #~ consulta = "SELECT %s FROM %s WHERE %s " % (campos,tabla,condiciones)
         else:
-            consulta = "SELECT * FROM %s WHERE %s LIMIT %s" % (tabla,condiciones,a_obtener)  
-            #~ consulta = "SELECT * FROM %s WHERE %s " % (tabla,condiciones)  
-        
+            consulta = "SELECT * FROM %s WHERE %s LIMIT %s" % (tabla,condiciones,a_obtener)
+            #~ consulta = "SELECT * FROM %s WHERE %s " % (tabla,condiciones)
+
         #~ print consulta
         # se obtienen los datos de la consulta
         datos = self.realizarConsulta(consulta)
@@ -181,7 +182,7 @@ class sqlite :
 
         resultado = (cantidad_registros, datos[a_obtener-longitud_parte:])
         return resultado
-    
+
     def getDatosTabla (self, tabla, campos = None) :
         """ Obtiene una lista con todos los datos de la tabla. """
         if campos is None:
@@ -210,21 +211,21 @@ class sqlite :
         return lista
 
     def getEstructuraTabla(self, nombreTabla) :
-        """ 
-        Devuelve un diccionario con la estructura de la tabla, 
-        donde clave = nombre del campo, 
+        """
+        Devuelve un diccionario con la estructura de la tabla,
+        donde clave = nombre del campo,
         y valor = tipo dato campo.
         """
         self.__cursor.execute('PRAGMA table_info(' + nombreTabla + ')')
         infotable = self.__cursor.fetchall()
-        
+
         estructura = {}
         for row in infotable :
             # row[1] = nombre_campo
             # row[2] = tipo_campo
             estructura[row[1]] = row[2]
         return estructura
-        
+
     def getFilasSegunPatronEnTabla (self, tabla, patron) :
         """ Recibe un patron(string) y devuelve todas las filas
         donde se encuentra dicho patron. """
@@ -253,7 +254,7 @@ class sqlite :
             #print row[2]
             lista.append(row[2])
         return lista
-    
+
     def realizarConsulta (self, consulta) :
         """ Ejecuta la consulta SQL indicada. """
         try:
