@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>769</width>
+    <height>456</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Incluir metodos de las señales</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="margin">
+    <number>6</number>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="gbIncluirEventos">
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="title">
+      <string>Incluir manejadores de eventos</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Dobleclick para seleccionar el widget</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="twWidgets">
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectItems</enum>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Widget</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Widget:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbWidget">
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <underline>false</underline>
+           </font>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Señales</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="cbSenales"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btQuitar">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background: #DBDBDB;
+	border-radius: 3px;
+	color:#353535;
+	border: 1px solid #A0A197;
+	padding:8px;
+}
+
+QPushButton:pressed{
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                            stop: 0 #dadbde, stop: 1 #f6f7fa);		
+	border: 1px solid #505050;
+}
+QPushButton:hover{
+         background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                           stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+          </property>
+          <property name="text">
+           <string>- Quitar</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="btIncluir">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>90</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+	background: #DBDBDB;
+	border-radius: 3px;
+	color:#353535;
+	border: 1px solid #A0A197;
+	padding:8px;
+}
+
+QPushButton:pressed{
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                            stop: 0 #dadbde, stop: 1 #f6f7fa);		
+	border: 1px solid #505050;
+}
+QPushButton:hover{
+         background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                           stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+          </property>
+          <property name="text">
+           <string>+ Incluir</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="twEventos">
+        <property name="alternatingRowColors">
+         <bool>true</bool>
+        </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectItems</enum>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+         <bool>true</bool>
+        </attribute>
+        <column>
+         <property name="text">
+          <string>Nombre</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Widget</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Señal</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btSalir">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background: #DBDBDB;
+	border-radius: 3px;
+	color:#353535;
+	border: 1px solid #A0A197;
+	padding:8px;
+}
+
+QPushButton:pressed{
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                            stop: 0 #dadbde, stop: 1 #f6f7fa);		
+	border: 1px solid #505050;
+}
+QPushButton:hover{
+         background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                           stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+       </property>
+       <property name="text">
+        <string>Salir</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btAceptar">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>90</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background: #DBDBDB;
+	border-radius: 3px;
+	color:#353535;
+	border: 1px solid #A0A197;
+	padding:8px;
+}
+
+QPushButton:pressed{
+	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                            stop: 0 #dadbde, stop: 1 #f6f7fa);		
+	border: 1px solid #505050;
+}
+QPushButton:hover{
+         background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                           stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+       </property>
+       <property name="text">
+        <string>Aceptar</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btSalir</sender>
+   <signal>clicked()</signal>
+   <receiver>Dialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>428</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
