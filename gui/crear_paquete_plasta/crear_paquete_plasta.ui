@@ -59,12 +59,22 @@ border: 1px solid gray;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="leNombreClaseCS"/>
+           <widget class="QLineEdit" name="leNombreClaseCS">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>Ej: Cliente</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item>
          <widget class="QTabWidget" name="tabWidget_2">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -94,13 +104,6 @@ border: 1px solid gray;
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
-                 <widget class="QPushButton" name="btNuevoAtributoCS">
-                  <property name="text">
-                   <string>Nuevo</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="btEliminarAtributoCS">
                   <property name="text">
                    <string>Eliminar</string>
@@ -113,7 +116,7 @@ border: 1px solid gray;
                    <enum>Qt::Vertical</enum>
                   </property>
                   <property name="sizeType">
-                   <enum>QSizePolicy::Preferred</enum>
+                   <enum>QSizePolicy::Expanding</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -162,7 +165,11 @@ border: 1px solid gray;
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="leNombreAtributoCS"/>
+                  <widget class="QLineEdit" name="leNombreAtributoCS">
+                   <property name="placeholderText">
+                    <string>Ej: nombre</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -205,7 +212,24 @@ border: 1px solid gray;
                  </item>
                 </layout>
                </item>
+               <item>
+                <widget class="QPushButton" name="btAgregarAtributoCS">
+                 <property name="text">
+                  <string>Agregar</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="chkAddIdeAttr">
+              <property name="text">
+               <string>Agregar atributo 'ide'</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
              </widget>
             </item>
            </layout>
@@ -507,7 +531,7 @@ border: 1px solid gray;
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>ClaseManager</string>
+        <string>Clase Manager</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_11">
         <item>
@@ -520,12 +544,19 @@ border: 1px solid gray;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="leNombreClaseCM"/>
+           <widget class="QLineEdit" name="leNombreClaseCM">
+            <property name="text">
+             <string>xxxManager</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item>
          <widget class="QTabWidget" name="tabWidget_3">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -861,7 +892,7 @@ border: 1px solid gray;
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
-        <string>GUIManager</string>
+        <string>GUI Manager</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_25">
         <item>
@@ -874,12 +905,19 @@ border: 1px solid gray;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="leNombreClaseGM"/>
+           <widget class="QLineEdit" name="leNombreClaseGM">
+            <property name="text">
+             <string>xxxGUI</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_4">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="title">
            <string>Definir orden de los atributos en la lista</string>
           </property>
@@ -1003,6 +1041,9 @@ border: 1px solid gray;
         </item>
         <item>
          <widget class="QGroupBox" name="groupBox_7">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="title">
            <string>Definir orden de los atributos en el combo de la busqueda </string>
           </property>
@@ -1121,7 +1162,7 @@ border: 1px solid gray;
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Agregar</string>
+        <string>Clase Add</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_31">
         <item>
@@ -1140,7 +1181,11 @@ border: 1px solid gray;
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="leNombreClaseAC"/>
+           <widget class="QLineEdit" name="leNombreClaseAC">
+            <property name="text">
+             <string>Addxxx</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -1162,7 +1207,7 @@ border: 1px solid gray;
           <item>
            <widget class="QLineEdit" name="leNombreUI">
             <property name="text">
-             <string>agregar.ui</string>
+             <string>add.ui</string>
             </property>
            </widget>
           </item>
@@ -1222,7 +1267,7 @@ border: 1px solid gray;
               </layout>
              </item>
              <item>
-              <widget class="QTableWidget" name="twListaAC">
+              <widget class="QListWidget" name="lwListaAC">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
                  <horstretch>0</horstretch>
@@ -1235,6 +1280,13 @@ border: 1px solid gray;
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_30">
+             <item>
+              <widget class="QPushButton" name="btAgregarAC">
+               <property name="text">
+                <string>Agregar</string>
+               </property>
+              </widget>
+             </item>
              <item>
               <widget class="QPushButton" name="btEliminarAC">
                <property name="text">
@@ -1295,7 +1347,7 @@ border: 1px solid gray;
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_35">
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="btGenerarCS">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -1308,10 +1360,13 @@ border: 1px solid gray;
            <property name="checkable">
             <bool>true</bool>
            </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_5">
+          <widget class="QPushButton" name="btGenerarCM">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -1324,10 +1379,13 @@ border: 1px solid gray;
            <property name="checkable">
             <bool>true</bool>
            </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_6">
+          <widget class="QPushButton" name="btGenerarGM">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -1340,10 +1398,13 @@ border: 1px solid gray;
            <property name="checkable">
             <bool>true</bool>
            </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_7">
+          <widget class="QPushButton" name="btGenerarAg">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
              <horstretch>0</horstretch>
@@ -1351,9 +1412,12 @@ border: 1px solid gray;
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Agregar</string>
+            <string>Clase Add</string>
            </property>
            <property name="checkable">
+            <bool>true</bool>
+           </property>
+           <property name="checked">
             <bool>true</bool>
            </property>
           </widget>
@@ -1379,10 +1443,14 @@ border: 1px solid gray;
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="leNombreAtributoCS_2"/>
+       <widget class="QLineEdit" name="leUbicacionResultado">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="btExaminar">
         <property name="text">
          <string>Examinar...</string>
         </property>
@@ -1406,7 +1474,7 @@ border: 1px solid gray;
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_34">
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btSalir">
         <property name="text">
          <string>Salir</string>
         </property>
@@ -1426,7 +1494,7 @@ border: 1px solid gray;
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_3">
+       <widget class="QPushButton" name="btGenerar">
         <property name="minimumSize">
          <size>
           <width>120</width>
@@ -1462,7 +1530,7 @@ QPushButton:pressed{
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>btSalir</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
