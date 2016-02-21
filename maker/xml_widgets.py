@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 #
 #       Copyright 2011 Jonathan Ferreyra <jalejandroferreyra@gmail.com>
-#       
+#
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
 #       the Free Software Foundation; either version 2 of the License, or
 #       (at your option) any later version.
-#       
+#
 #       This program is distributed in the hope that it will be useful,
 #       but WITHOUT ANY WARRANTY; without even the implied warranty of
 #       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #       GNU General Public License for more details.
-#       
+#
 #       You should have received a copy of the GNU General Public License
 #       along with this program; if not, write to the Free Software
 #       Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
@@ -38,13 +38,15 @@ todo = u'''<?xml version="1.0" encoding="UTF-8"?>
   <property name="windowTitle">
    <string>###</string>
   </property>
-  
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-   %widgets%
-   </layout>
-  </widget>
-  
+
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     %widgets%
+    </layout>
+   </item>
+  </layout>
+
  </widget>
  <resources/>
  <connections/>
@@ -58,17 +60,17 @@ todo = u'''<?xml version="1.0" encoding="UTF-8"?>
 #~ 5- Widget
 
 par_label_layout = u'''<item>
-     <layout class="QHBoxLayout" name="hl###"><!-- Cambio -->
+     <layout class="QHBoxLayout" name="hl###">
       <item>
-       <widget class="QLabel" name="lb#nombre_widget#"><!-- Cambio -->
+       <widget class="QLabel" name="lb#nombre_widget#">
         <property name="minimumSize">
          <size>
-          <width>%d</width><!-- aca va el nombre mas grande x 8 -->
+          <width>%d</width>
           <height>0</height>
          </size>
         </property>
         <property name="text">
-            <string>#nombre_campo#</string><!-- Cambio -->
+            <string>#nombre_campo#</string>
         </property>
         <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -86,6 +88,13 @@ par_label_layout = u'''<item>
 par_botones = u'''<item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
+       <widget class="QPushButton" name="bt###">
+        <property name="text">
+         <string>###</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -97,13 +106,6 @@ par_botones = u'''<item>
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="bt###">
-        <property name="text">
-         <string>###</string>
-        </property>
-       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="bt%%%">
@@ -137,7 +139,7 @@ evento_cerrar_ventana = u'''<connections>
    </hints>
   </connection>
  </connections>'''
-     
+
 #~ Orden de los valores que se reemplazaran en la plantilla: <lineedit>
 #~ 1- Nombre del entry
 
@@ -151,7 +153,7 @@ lineedit = u'''<item>
         </property>
        </widget>
       </item>'''
-      
+
 lineedit_with_btref = u'''<item><layout class="QHBoxLayout" name="hl_#nombre_widget#">
        <property name="spacing">
         <number>0</number>
@@ -218,7 +220,7 @@ combobox = u'''<item>
        </widget>
       </item>'''
 
-#~ Orden de los valores que se reemplazaran en la plantilla: <lineedit>
+#~ Orden de los valores que se reemplazaran en la plantilla: <radiobutton>
 #~ 1- Nombre del radiobutton
 #~ 2- Etiqueta del radiobutton
 
@@ -270,11 +272,11 @@ dateedit = u'''<item>
       </property>
      </widget>
     </item>'''
-    
+
 spinbox = '''<item>
      <widget class="QSpinBox" name="#prefijo##nombre_widget#"/>
     </item>'''
-    
+
 # diccionario que contiene el fuente de los distintos widgets
 source_widgets = {
 'QCheckBox':checkbox,
@@ -285,6 +287,3 @@ source_widgets = {
 'QDateEdit':dateedit,
 'QSpinBox':spinbox
 }
-
-#TODO : agregar soporte para QDateEdit 
-#TODO : agregar soporte para QSpinBox
